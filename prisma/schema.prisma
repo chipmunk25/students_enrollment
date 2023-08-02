@@ -1,0 +1,72 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model students {
+  id                 Int                  @id @default(autoincrement())
+  name               String               @db.VarChar(255)
+  dateOfBirth        DateTime             @db.Date
+  gender             String?
+  photograph         String?              @db.VarChar(255)
+  residency          Residency?
+  status             Status?
+  classmgt           classmgt[]
+  registeredstudents registeredstudents[]
+}
+
+model classmgt {
+  id                  Int       @id @default(autoincrement())
+  className           String    @db.VarChar(255)
+  maxClassSize        Int       @default(0)
+  student             students? @relation(fields: [classRepresentative], references: [id])
+  classRepresentative Int
+}
+
+model coursemgt {
+  id                 Int                  @id @default(autoincrement())
+  courseName         String               @db.VarChar(255)
+  startDate          DateTime             @db.Date
+  duration           Int                  @default(0)
+  registeredstudents registeredstudents[]
+}
+
+model registeredstudents {
+  id        Int        @id @default(autoincrement())
+  student   students?  @relation(fields: [studentId], references: [id])
+  studentId Int
+  course    coursemgt? @relation(fields: [courseId], references: [id])
+  courseId  Int
+}
+
+enum Residency {
+  on_campus  @map("on-campus")
+  off_campus @map("off-campus")
+}
+
+enum Status {
+  regular    @map("Regular")
+  foreign    @map("Foreign")
+  fee_paying @map("Fee Paying")
+  distance   @map("Distance")
+}
+
+model users {
+  id               Int      @id @default(autoincrement())
+  fullname         String   @db.VarChar(255)
+  telephone        String?  @unique @db.VarChar(40)
+  password         String   @db.VarChar(255)
+  email            String   @unique @db.VarChar(255)
+  administrator    Boolean  @default(false)
+  confirmed        Boolean  @default(false)
+  confirmationCode String?  @db.VarChar(255)
+  del_flg          Int      @default(0)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}

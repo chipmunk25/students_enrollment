@@ -12,7 +12,7 @@
     "postbuild": "node postbuild.js",
     "seed": "npx prisma db seed",
     "generate": "npx prisma generate",
-    "migrate": "npx prisma migrate dev --skip-generate",
+    "migrate": "npx prisma migrate dev",
     "serve": "node --max-old-space-size=2048 -r dotenv/config dist/server/app.js",
     "start": "node --max-old-space-size=2048 -r dotenv/config dist/server/app.js",
     "dev-js-server": "mkdir -p dist && cp -R  src/server dist",

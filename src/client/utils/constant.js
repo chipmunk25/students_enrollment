@@ -10,6 +10,7 @@ const Constant = {
   TEXTAREA: "textarea",
   UPLOAD: "upload",
   BUTTON: "button",
+  SUBMIT: "submit",
   SIZES: {
     small: "h-8",
     medium: "h-12",

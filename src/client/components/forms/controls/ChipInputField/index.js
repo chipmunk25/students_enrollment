@@ -57,7 +57,7 @@ const ChipInputField = forwardRef(
               )}
             >
               {allowClear && rest?.value?.length > 0 && (
-                <div className="p-1 text-gray-500 rounded-md hover:bg-red-50 hover:text-red-800 ">
+                <div className="p-1 z-10 text-gray-500 rounded-md hover:bg-red-50 hover:text-red-800 ">
                   <IoCloseOutline
                     className="hidden cursor-pointer group-hover:block"
                     onClick={clearHandler}

@@ -3,8 +3,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import FormBuilder from "../builder";
 import ValidationSchema from "../validation";
-
-const FormWizard = ({ initialValues, fields, validations }) => {
+const FormWizard = ({ initialValues, fields, validations, onSubmit }) => {
   const validationSchema = useMemo(() => {
     return Yup.object().shape(
       Object.fromEntries(
@@ -15,15 +14,11 @@ const FormWizard = ({ initialValues, fields, validations }) => {
       )
     );
   }, [validations]);
-
   const formik = useFormik({
     initialValues,
     validationSchema,
-    onSubmit: (values) => {
-      console.log(values);
-    },
+    onSubmit,
   });
-
   return (
     <div className="flex gap-2">
       <form onSubmit={formik.handleSubmit} className="w-full">
@@ -32,5 +27,4 @@ const FormWizard = ({ initialValues, fields, validations }) => {
     </div>
   );
 };
-
 export default FormWizard;

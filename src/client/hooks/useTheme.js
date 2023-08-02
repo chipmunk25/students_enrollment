@@ -3,7 +3,7 @@ import { immer } from "zustand/middleware/immer";
 const initialState = {
   size: "small",
   border: "border-0",
-  color: "blue",
+  color: "stone",
   weight: 500,
   lighttext: 500,
   lightbg: 100,

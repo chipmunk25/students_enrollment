@@ -1,0 +1,53 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "no-loops", "prettier"],
+  "extends": [
+    "restricted-globals",
+    "eslint-config-restricted-globals",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "env": { "node": true, "es6": true },
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "project": "./tsconfig.json"
+  },
+  "rules": {
+    "no-console": "off", // Remember, this means error!
+    "semi": ["error", "always"],
+    "handle-callback-err": "error",
+    "no-loops/no-loops": 2,
+    "prettier/prettier": 2,
+    "no-restricted-globals": ["error", "event", "fdescribe"],
+    "object-curly-spacing": ["error", "always"],
+    "camelcase": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/no-explicit-any": 1,
+    "@typescript-eslint/no-inferrable-types": [
+      "warn",
+      {
+        "ignoreParameters": true
+      }
+    ],
+    "no-underscore-dangle": "off",
+    "no-shadow": "off",
+    "no-new": 0,
+    "@typescript-eslint/no-shadow": ["error"],
+    "@typescript-eslint/no-unused-vars": "warn",
+    "quotes": [2, "single", { "avoidEscape": true }],
+    "class-methods-use-this": "off",
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ]
+  }
+}

@@ -1,12 +1,14 @@
 import {
   IoAppsSharp,
+  IoDiamondSharp,
+  IoFileTrayStackedSharp,
+  IoPeopleSharp,
   IoPricetagSharp,
   IoSettingsSharp,
   IoTicketSharp,
   IoVolumeHighSharp,
 } from "react-icons/io5";
 import { useEffect, useState } from "react";
-
 // import { IMAGE_BASE_URL } from "@utils/constantUtil";
 // import defaultLogo from "@assets/jpg/default-logo.jpg";
 import RenderArrayMenu from "./rendermenu";
@@ -16,12 +18,9 @@ const splitAndLast = (string) => {
   const path = res[res.length - 1];
   return path;
 };
-
 const SideNav = () => {
   const location = useLocation();
-
   const match = splitAndLast(location.pathname);
-
   return (
     <div className="w-full h-full">
       <div className="py-2 mb-3">
@@ -43,34 +42,27 @@ const SideNav = () => {
     </div>
   );
 };
-
 const SidebarMenu = (props) => {
   const [activeRoute, setActiveRoute] = useState("");
-
   // update the active route whenever it changes
   useEffect(() => {
     setActiveRoute(props.activeRoute);
   }, [props.activeRoute]);
   return <RenderArrayMenu array={props.array} activeRoute={activeRoute} />;
 };
-
 const sideNav = [
   {
-    key: "profile",
-    item: "User Profile",
+    key: "students",
+    item: "Students",
     route: "",
-    icon: IoTicketSharp,
+    icon: IoPeopleSharp,
     subItems: [
       {
-        key: "user-profile",
-        item: "Profile",
-        route: "profile",
+        key: "register",
+        item: "Register",
+        route: "register",
       },
-      { key: "chg-pwd", item: "Change Password", route: "chg-pwd" },
-      { key: "account", item: "Account Details", route: "account" },
-      { key: "subscription", item: "Subscription Plans", route: "pricing" },
-      // { key: 'setup-wizard', item: 'Setup Wizard', route: 'setup-wizard' },
-      { key: "logout", item: "Logout", route: "logout" },
+      { key: "lists", item: "Student Lists", route: "students" },
     ],
   },
   {
@@ -80,95 +72,37 @@ const sideNav = [
     icon: IoAppsSharp,
   },
   {
-    key: "alerts",
-    item: "Alerts",
+    key: "class",
+    item: "Class",
     route: "",
-    icon: IoVolumeHighSharp,
+    icon: IoDiamondSharp,
     subItems: [
       {
-        key: "past-due",
-        item: "Assets Past Due",
-        route: "reports/alerts/checkoutbypastdue",
+        key: "create",
+        item: "New Class",
+        route: "new-class",
         bgColor: "bg-blue-600",
         color: "text-blue-100",
       },
       {
-        key: "contracts-due",
-        item: "Contracts Expiring",
-        route: "reports/alerts/contractsexpiring",
+        key: "lists",
+        item: "Class Lists",
+        route: "classes",
         bgColor: "bg-green-600",
         color: "text-green-100",
       },
-      {
-        key: "funds-expire",
-        item: "Funds Expiring",
-        route: "reports/alerts/fundsexpiring",
-        bgColor: "bg-gray-600",
-        color: "text-gray-100",
-      },
-      {
-        key: "insurance-expire",
-        item: "Insurances Expiring",
-        route: "reports/alerts/insurancesexpiring",
-        bgColor: "bg-fuchsia-600",
-        color: "text-fuchsia-100",
-      },
-      {
-        key: "lease-expire",
-        item: "Leases Expiring",
-        route: "reports/alerts/leasesexpiring",
-        bgColor: "bg-orange-600",
-        color: "text-orange-100",
-      },
-      {
-        key: "maintenance-due",
-        item: "Maintenance Due",
-        route: "reports/alerts/maintenancesdue",
-        bgColor: "bg-violet-600",
-        color: "text-violet-100",
-      },
-      {
-        key: "maintenance-overdue",
-        item: "Maintenance Overdue",
-        route: "reports/alerts/maintenancesoverdue",
-        bgColor: "bg-teal-600",
-        color: "text-teal-100",
-      },
-      {
-        key: "warranty-expire",
-        item: "Warranties Expiring",
-        route: "reports/alerts/warrantiesexpiring",
-        bgColor: "bg-red-600",
-        color: "text-red-100",
-      },
+    ],
+  },
+  {
+    key: "course",
+    item: "Courses",
+    route: "",
+    icon: IoFileTrayStackedSharp,
+    subItems: [
+      { key: "new-courses", item: "New Course", route: "new-course" },
+      { key: "lists", item: "Courses", route: "courses" },
     ],
   },
 
-  {
-    key: "tools",
-    item: "Tools",
-    route: "",
-    icon: IoSettingsSharp,
-    subItems: [
-      { key: "import", item: "Import", route: "import" },
-      { key: "export", item: "Export", route: "export" },
-    ],
-  },
-  {
-    key: "advanced",
-    item: "Advanced",
-    route: "",
-    icon: IoPricetagSharp,
-    subItems: [
-      { key: "contracts", item: "Contracts/Licenses", route: "contracts" },
-      { key: "persons", item: "Persons/Employees", route: "persons" },
-      { key: "customers", item: "Customers", route: "customers" },
-      { key: "funding", item: "Funding", route: "funds" },
-      { key: "insurance", item: "Insurance", route: "insurances" },
-      { key: "users", item: "Users", route: "users" },
-      { key: "roles", item: "Security Groups", route: "groupmanager" },
-    ],
-  },
 ];
-
 export default SideNav;

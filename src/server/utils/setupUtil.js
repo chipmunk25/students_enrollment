@@ -2,10 +2,10 @@ const prisma = require('./prismaUtil');
 const loggerUtil = require('./loggerUtil');
 const passwordUtil = require('./passwordUtil');
 const data = {
-    fullname: 'Desmond',
-    email: 'desdhi24@gmail.com',
+    fullname: 'super user',
+    email: 'super@super.com',
     telephone: '0248111128',
-    password: '$Saraphina1'
+    password: 'Pass123$1'
 };
 exports.run = async () => {
     try {

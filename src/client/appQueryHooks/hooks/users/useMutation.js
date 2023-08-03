@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
+import useAuthStore from '../../../hooks/auth';
 import { CreateUser, forgotPwd, LoginUser, ResetPwd, updateUser, updateUserAccess } from '../../api/users';
-
 export const useForgotMutation = () => {
     // const queryClient = useQueryClient();
     return useMutation(forgotPwd, {
@@ -15,7 +15,6 @@ export const useForgotMutation = () => {
         }
     });
 };
-
 export const useResetMutation = () => {
     // const queryClient = useQueryClient();
     return useMutation(ResetPwd, {
@@ -37,23 +36,15 @@ export const useResetMutation = () => {
         }
     });
 };
-
 export const useLoginUser = () => {
-    const queryClient = useQueryClient();
-
+    // const queryClient = useQueryClient();
+    const { setToken } = useAuthStore()
     return useMutation(LoginUser, {
         onSuccess: response => {
-            const authUser = response.data.authUser
-            const access = authUser?.access_level
-            queryClient.invalidateQueries(['authUser']);
-            switch (access) {
-                case "REGIONAL":
-                    const regionId = authUser?.userAccess?.regionId
-                    window.location.href = `/regional/${regionId}`;
-                    break;
-                default:
-                    break;
-            }
+            const token = response.data.token
+            setToken(token)
+            // queryClient.invalidateQueries(['authUser']);
+            window.location.href = `/`;
         },
         onError: error => {
             const errMsg = error.response.data.message;
@@ -61,7 +52,6 @@ export const useLoginUser = () => {
         }
     });
 };
-
 export const useCreateUserMutation = () => {
     const queryClient = useQueryClient();
     return useMutation(CreateUser, {
@@ -82,7 +72,6 @@ export const useCreateUserMutation = () => {
         }
     });
 };
-
 export const useUpdateUserMutation = () => {
     return useMutation(updateUser, {
         onSuccess: res => {
@@ -98,7 +87,6 @@ export const useUpdateUserMutation = () => {
         }
     });
 };
-
 export const useUpdateUserAccessMutation = () => {
     return useMutation(updateUserAccess, {
         onSuccess: res => {

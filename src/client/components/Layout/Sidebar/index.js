@@ -8,7 +8,7 @@ const Sidebar = () => {
     >
       <div className={`p-5 pt-12 border-b border-${theme.color}-300`}>
         <div className="pb-5">
-          <span className="text-base font-semibold">ChipUI</span>
+          <span className="text-base font-semibold">Student Enrollment</span>
         </div>
         <div>
           <div className="text-sm font-normal ">

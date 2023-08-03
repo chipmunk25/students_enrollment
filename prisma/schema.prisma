@@ -10,7 +10,7 @@ datasource db {
 }
 
 model students {
-  id                 Int                  @id @default(autoincrement())
+  studentId          String               @id @unique @db.VarChar(255)
   name               String               @db.VarChar(255)
   dateOfBirth        DateTime             @db.Date
   gender             String?
@@ -19,14 +19,16 @@ model students {
   status             Status?
   classmgt           classmgt[]
   registeredstudents registeredstudents[]
+  studentclass       studentclass[]
 }
 
 model classmgt {
-  id                  Int       @id @default(autoincrement())
-  className           String    @db.VarChar(255)
-  maxClassSize        Int       @default(0)
-  student             students? @relation(fields: [classRepresentative], references: [id])
-  classRepresentative Int
+  id                  Int            @id @default(autoincrement())
+  className           String         @db.VarChar(255)
+  maxClassSize        Int            @default(0)
+  student             students?      @relation(fields: [classRepresentative], references: [studentId])
+  classRepresentative String
+  studentclass        studentclass[]
 }
 
 model coursemgt {
@@ -39,10 +41,18 @@ model coursemgt {
 
 model registeredstudents {
   id        Int        @id @default(autoincrement())
-  student   students?  @relation(fields: [studentId], references: [id])
-  studentId Int
+  student   students?  @relation(fields: [studentId], references: [studentId])
+  studentId String
   course    coursemgt? @relation(fields: [courseId], references: [id])
   courseId  Int
+}
+
+model studentclass {
+  id        Int       @id @default(autoincrement())
+  student   students? @relation(fields: [studentId], references: [studentId])
+  studentId String?
+  class     classmgt? @relation(fields: [classId], references: [id])
+  classId   Int?
 }
 
 enum Residency {

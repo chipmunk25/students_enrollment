@@ -4,10 +4,10 @@ import { useLoginUser } from '@appQueryHooks/hooks/users/useMutation';
 import FormWizard from '../../../components/forms/Wizard';
 import Constant from "@utils/constant";
 const LoginForm = () => {
-    const LoginUser = useLoginUser();
+    const useUser = useLoginUser();
     return (
         <div className="w-full ">
-            {LoginUser.isLoading && <Loader />}
+            {useUser.isLoading && <Loader />}
             <FormWizard fields={[{
                 type: Constant.TEXT,
                 name: "email",
@@ -38,6 +38,7 @@ const LoginForm = () => {
             }}
                 onSubmit={(values) => {
                     console.log(values);
+                    useUser.mutate(values)
                 }}
             />
         </div>

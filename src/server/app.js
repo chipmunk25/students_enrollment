@@ -6,16 +6,14 @@ const _debug = require('debug');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const compression = require('compression');
-// const { run } = require('./utils/setupUtil');
-// const AppRouter = require('./routes');
+const { run } = require('./utils/setupUtil');
+const AppRouter = require('./routes');
 require('dotenv/config');
 (async () => {
     const app = express();
     // enable this if you run behind a proxy (e.g. nginx)
     const debug = _debug('student-enrollment');
     const isDev = process.env.NODE_ENV === 'development';
-
-
     app.use(
         compression({
             filter: function (req, res) {
@@ -32,7 +30,6 @@ require('dotenv/config');
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(express.json({ limit: '100mb' }));
     app.use(cors({ origin: true, credentials: true }));
-
     app.use(express.urlencoded({ extended: true, limit: '100mb' }));
     app.set('views', path.join(__dirname, '../client'));
     app.set('view engine', 'ejs');
@@ -69,12 +66,10 @@ require('dotenv/config');
     app.use('/assets', express.static(path.join(__dirname, '../client/assets/')));
     app.use(express.static(path.join(__dirname, '../client')));
     //Routes
-    // app.use('/api', AppRouter);
+    app.use('/api', AppRouter);
     app.get('/api', (req, res) => {
         res.json({ message: 'Welcome to  app' });
     });
-
-
     app.use('/*', (req, res) => {
         return res.render('enrollment', {
             BASE_URL: process.env.BASE_URL,
@@ -125,6 +120,6 @@ require('dotenv/config');
     const server = http.createServer(app);
     server.on('error', onError);
     server.on('listening', onListening);
-    // run();
+    run();
     server.listen(port);
 })();

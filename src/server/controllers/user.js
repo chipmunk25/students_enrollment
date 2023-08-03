@@ -64,12 +64,44 @@ exports.loginUser = async (req, res, next) => {
             res.status(200).json({
                 status: "success",
                 token,
+                userId: user.id
             });
         }
     } catch (error) {
         // console.log(error.message);
         loggerUtil.error(error.message);
-        next(error);
-        // next(new HttpException(422, error.message));
+        next(new HttpException(422, error.message));
+    }
+};
+exports.logout = async (req, res, next) => {
+    try {
+        const loggedout = "loggedout"
+        tokenUtil.setInvalidToken(loggedout);
+        return res.status(200).json({
+            status: "success",
+            message: "logged out"
+        });
+    } catch (error) {
+        loggerUtil.error(error.message);
+        next(new HttpException(422, error.message));
+    }
+}
+exports.getAuthUser = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+        const user = await prisma.users.findUnique({
+            where: {
+                id: parseInt(id)
+            },
+            select: {
+                fullname: true,
+                email: true
+            }
+        })
+        return res.status(200).json({ user });
+    } catch (error) {
+        console.log('error:', error.message);
+        loggerUtil.error(error.message);
+        next(new HttpException(404, error.message));
     }
 };

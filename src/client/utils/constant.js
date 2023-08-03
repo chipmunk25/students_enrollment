@@ -1,6 +1,7 @@
 const Constant = {
   TEXT: "text",
   EMAIL: "email",
+  NUMBER: "number",
   PASSWORD: "password",
   SELECT: "select",
   DATE: "date",

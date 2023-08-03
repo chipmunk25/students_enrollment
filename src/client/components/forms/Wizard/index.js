@@ -7,9 +7,9 @@ const FormWizard = ({ initialValues, fields, validations, onSubmit }) => {
   const validationSchema = useMemo(() => {
     return Yup.object().shape(
       Object.fromEntries(
-        Object.entries(validations).map(([field, msg]) => [
+        Object.entries(validations).map(([field, value]) => [
           field,
-          ValidationSchema(field, msg),
+          ValidationSchema(value[0], value[1]),
         ])
       )
     );

@@ -8,33 +8,34 @@ const LoginForm = () => {
     return (
         <div className="w-full ">
             {useUser.isLoading && <Loader />}
-            <FormWizard fields={[{
-                type: Constant.TEXT,
-                name: "email",
-                label: "Enter Email",
-                placeholder: "Enter Email",
-                autoFocus: true,
-                required: true,
-            },
-            {
-                type: Constant.PASSWORD,
-                name: "password",
-                label: "Password",
-                placeholder: "Enter Password",
-                required: true,
-            },
-            {
-                type: Constant.SUBMIT,
-                primary: true,
-                title: "Submit",
-                fluid: true,
-            },
+            <FormWizard fields={[
+                {
+                    type: Constant.EMAIL,
+                    name: "email",
+                    label: "Enter Email",
+                    placeholder: "Enter Email",
+                    autoFocus: true,
+                    required: true,
+                },
+                {
+                    type: Constant.PASSWORD,
+                    name: "password",
+                    label: "Password",
+                    placeholder: "Enter Password",
+                    required: true,
+                },
+                {
+                    type: Constant.SUBMIT,
+                    primary: true,
+                    title: "Submit",
+                    fluid: true,
+                },
             ]} initialValues={{
-                password: '',
-                email: ''
+                password: 'Pass123$1',
+                email: 'super@super.com'
             }} validations={{
-                email: "Email",
-                password: "Password",
+                email: ["email", "Email"],
+                password: ["password", "Password"],
             }}
                 onSubmit={(values) => {
                     console.log(values);

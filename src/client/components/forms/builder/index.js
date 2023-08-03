@@ -1,12 +1,14 @@
 import React from "react";
 import Constant from "@utils/constant";
 import {
-  ChipDateField,
+  // ChipDateField,
   ChipInputField,
   ChipSelectField,
   ChipPasswordField,
+  ChipNumberField
 } from "../controls";
 import ChipButton from "../../ChipButton";
+import ChipDateField from "../controls/ChipNewDate";
 const ChipFormBuilder = ({ config, formik }) => {
   return (
     <React.Fragment>
@@ -48,25 +50,45 @@ const ChipFormBuilder = ({ config, formik }) => {
                   clearHandler={() => formik.setFieldValue(formInput.name, "")}
                 />
               );
-            case Constant.DATE:
             case Constant.RANGE:
               return (
                 <ChipDateField
                   key={index}
                   {...formInput}
-                  value={formik.values[formInput.name]}
-                  horizontal={formInput.type === Constant.RANGE}
                   errorMessage={
                     formik.touched[formInput.name] &&
                     formik.errors[formInput.name]
                   }
-                  size={formInput.size}
-                  border={formInput.border}
-                  borderColor={formInput.borderColor}
                   onBlur={formik.handleBlur}
                   onChange={(value) => {
-                    formik.setFieldValue(formInput.name, value);
+                    formik.setFieldValue(formInput.name, value)
                   }}
+                />
+              );
+            case Constant.DATE:
+              return (
+                <ChipDateField
+                  key={index}
+                  {...formInput}
+                  errorMessage={
+                    formik.touched[formInput.name] &&
+                    formik.errors[formInput.name]
+                  }
+                  onBlur={formik.handleBlur}
+                  onChange={formik.handleChange}
+                />
+              );
+            case Constant.NUMBER:
+              return (
+                <ChipNumberField
+                  key={index}
+                  {...formInput}
+                  errorMessage={
+                    formik.touched[formInput.name] &&
+                    formik.errors[formInput.name]
+                  }
+                  onBlur={formik.handleBlur}
+                  onChange={formik.handleChange}
                 />
               );
             case Constant.SELECT:

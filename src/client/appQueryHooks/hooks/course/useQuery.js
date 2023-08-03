@@ -1,8 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import { getParties } from '../../api/party';
-
-export const usePartiesQuery = () =>
-    useQuery(['parties'], getParties, {
+import { getCourses } from '../../api/course';
+export const useCoursesQuery = () =>
+    useQuery(['courses'], getCourses, {
         refetchOnMount: false,
         refetchOnWindowFocus: false
     });

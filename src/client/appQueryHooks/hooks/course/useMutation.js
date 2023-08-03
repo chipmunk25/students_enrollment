@@ -1,23 +1,18 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
-import { SaveParty, updateParty } from '../../api/party';
-const initialData = {
-    showModal: false,
-    modalTitle: '',
-    modalSize: '',
-    modalBody: null
-};
+import useCommonStore from '../../../hooks/useCommon';
+import { CreateCourse } from '../../api/course';
 
-export const useSavePartyMutation = () => {
+
+export const useSaveCourseMutation = () => {
     const queryClient = useQueryClient();
-    return useMutation(SaveParty, {
+    const { resetModal } = useCommonStore()
+    return useMutation(CreateCourse, {
         onSuccess: res => {
             console.log(res);
-            queryClient.invalidateQueries(['parties']);
-            toast.success('Saved!');
-            queryClient.setQueryData(['modal'], () => {
-                return initialData;
-            });
+            queryClient.invalidateQueries(['courses']);
+            toast.success('Course Saved!');
+            resetModal()
         },
         onError: error => {
             const errMsg = error.response.data.message;
@@ -25,13 +20,12 @@ export const useSavePartyMutation = () => {
         }
     });
 };
-
-export const useUpdatePartyMutation = () => {
+export const useUpdateCandidateMutation = () => {
     const queryClient = useQueryClient();
-    return useMutation(updateParty, {
+    return useMutation(UpdateCandidate, {
         onSuccess: res => {
             console.log(res);
-            queryClient.invalidateQueries(['parties']);
+            queryClient.invalidateQueries(['candidates']);
             toast.success('Saved!');
             queryClient.setQueryData(['modal'], () => {
                 return initialData;

@@ -2,7 +2,7 @@ import ButtonInput from "./button";
 import Calendar from "./calendar";
 import DatePicker from "react-datepicker";
 import classNames from "classnames";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import useThemeStore from "@hooks/useTheme";
 import React from "react"
 const ChipDateField = ({
@@ -10,16 +10,15 @@ const ChipDateField = ({
   required,
   fluid,
   allowClear,
-  clearHandler,
-
   label,
-  startDate,
-  setStartDate,
-  endDate,
-  setEndDate,
+  onChange,
   name,
 }) => {
   const theme = useThemeStore((state) => state);
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(
+    new Date().setMonth(startDate.getMonth() + 1)
+  );
   useEffect(() => {
     if (startDate > endDate) setStartDate(endDate);
     // eslint-disable-next-line
@@ -28,6 +27,14 @@ const ChipDateField = ({
     if (startDate > endDate) setEndDate(startDate);
     // eslint-disable-next-line
   }, [startDate]);
+
+  useEffect(() => {
+    onChange([startDate, endDate])
+  }, [startDate, endDate])
+  const clearHandler = () => {
+    setStartDate(new Date())
+    setEndDate(new Date().setMonth(startDate.getMonth() + 1))
+  }
   return (
     <div
       className={classNames("relative mx-auto", {

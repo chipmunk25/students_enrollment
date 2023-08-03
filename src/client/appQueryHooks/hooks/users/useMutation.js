@@ -38,11 +38,14 @@ export const useResetMutation = () => {
 };
 export const useLoginUser = () => {
     // const queryClient = useQueryClient();
-    const { setToken } = useAuthStore()
+    const { setToken, setUserId } = useAuthStore()
     return useMutation(LoginUser, {
         onSuccess: response => {
+            console.log(response)
             const token = response.data.token
+            const userId = response.data.userId
             setToken(token)
+            setUserId(userId)
             // queryClient.invalidateQueries(['authUser']);
             window.location.href = `/`;
         },

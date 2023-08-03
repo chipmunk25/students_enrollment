@@ -1,10 +1,11 @@
 import * as Yup from "yup";
 import YupPassword from "yup-password";
 // import parse from "date-fns/parse";
-
 YupPassword(Yup);
 const requiredStringField = (field) =>
   Yup.string().required(`No ${field} provided`);
+const requiredNumberField = (field) =>
+  Yup.number().min(1).positive().required(`No ${field} provided`)
 const requiredEmailField = (field) =>
   Yup.string().email("Invalid Email Address").required(`No ${field} provided`);
 const requiredBooleanField = () =>
@@ -23,13 +24,14 @@ const passwordField = () =>
     .minUppercase(1, "Password must contain at least 1 upper case letter")
     .minNumbers(1, "Password must contain at least 1 number")
     .minSymbols(1, "Password must contain at least 1 special character");
-
 const retypeField = (field, title) =>
   Yup.string().oneOf([Yup.ref(field), null], `${title} must match`);
 const ChipValidationSchema = (type, field, title) => {
   switch (type) {
     case "string":
       return requiredStringField(field);
+    case "number":
+      return requiredNumberField(field);
     case "email":
       return requiredEmailField(field);
     case "object":
@@ -44,5 +46,4 @@ const ChipValidationSchema = (type, field, title) => {
       return requiredBooleanField(field);
   }
 };
-
 export default ChipValidationSchema;

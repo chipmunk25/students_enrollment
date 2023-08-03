@@ -3,14 +3,14 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 import { toast } from 'react-toastify';
 
-export const useUserQuery = () =>
-    useQuery(['authUser'], getAuthUser, {
+export const useUserQuery = (payload) =>
+    useQuery(['authUser', payload], getAuthUser, {
         refetchOnMount: false,
         refetchOnWindowFocus: false
     });
 
-export const useLogoutQuery = (access) =>
-    useQuery(['logout',access], logout, {
+export const useLogoutQuery = () =>
+    useQuery(['logout',], logout, {
         refetchOnMount: false,
         refetchOnWindowFocus: false
     });

@@ -4,12 +4,12 @@ const loggerUtil = require('../utils/loggerUtil');
 exports.createCourse = async (req, res, next) => {
     const data = req.body
     try {
-        const coursemgt = await prisma.coursemgt.create({
+        const course = await prisma.coursemgt.create({
             data
         });
         res.status(201).json({
             status: 'success',
-            coursemgt
+            course
         });
     } catch (error) {
         console.log('error:', error.message);
@@ -17,6 +17,7 @@ exports.createCourse = async (req, res, next) => {
         next(new HttpException(422, error.message));
     }
 };
+
 exports.assignStudentsToClass = async (req, res, next) => {
     const { classStudents } = req.body
     try {
@@ -71,5 +72,19 @@ exports.changeStudentClass = async (req, res, next) => {
         console.log(error.message);
         loggerUtil.error(error.message);
         next(new HttpException(422, error.message));
+    }
+};
+exports.getCourses = async (req, res, next) => {
+    try {
+        const courses = await prisma.coursemgt.findMany({
+        });
+        res.status(200).json({
+            status: 'success',
+            courses
+        });
+    } catch (error) {
+        console.log(error.message);
+        loggerUtil.error(error.message);
+        next(new HttpException(404, error.message));
     }
 };

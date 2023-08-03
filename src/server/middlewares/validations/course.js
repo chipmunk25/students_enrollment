@@ -3,7 +3,7 @@ const HttpException = require('../http-exception');
 const loggerUtil = require('../../utils/loggerUtil');
 exports.checkCourse = async (req, res, next) => {
     const { courseName } = req.body
-    const classExist = await prisma.students.findFirst({
+    const courseExist = await prisma.coursemgt.findFirst({
         where: {
             OR: [
                 {
@@ -12,7 +12,7 @@ exports.checkCourse = async (req, res, next) => {
             ]
         }
     });
-    if (classExist) {
+    if (courseExist) {
         loggerUtil.error('Course Already Exist');
         next(new HttpException(422, 'Course Already Exist'));
     } else {

@@ -18,3 +18,12 @@ export const getCourses = async () => {
         }
     });
 }
+export const updateCourse = async payload => {
+    const { id, ...data } = payload
+    const token = getToken()
+    return await axios.patch(`/courses/${id}`, data, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+};

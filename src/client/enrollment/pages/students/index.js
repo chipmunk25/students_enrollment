@@ -9,20 +9,20 @@ import Add from './add';
 import Edit from './edit';
 import ChipButtonGroup from '../../../components/ChipButtonGroup';
 import RegisterStudents from './lists';
-const Courses = () => {
+const Students = () => {
     const { changeModal } = useCommonStore()
     const { data, isLoading } = useCoursesQuery()
     return (
         <div className='w-full'>
             <DataTable
-                title="Courses"
+                title="Students"
                 searchTerms={["courseName"]}
                 actionTools={
                     <div className="flex items-center justify-start gap-1 ">
-                        <ChipButton primary title="New Course" onClick={() => {
+                        <ChipButton primary title="New Student" onClick={() => {
                             const modal = {
                                 show: true,
-                                title: "New Course",
+                                title: "New Student",
                                 size: "medium",
                                 content: <Add />,
                             }
@@ -84,4 +84,4 @@ const Courses = () => {
         </div>
     );
 };
-export default Courses;
+export default Students;

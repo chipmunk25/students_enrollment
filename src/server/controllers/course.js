@@ -38,15 +38,15 @@ exports.UpdateCourse = async (req, res, next) => {
     const { id } = req.params;
     const data = req.body;
     try {
-        const classmgt = await prisma.coursemgt.update({
+        const course = await prisma.coursemgt.update({
             where: {
-                id
+                id: parseInt(id)
             },
             data
         });
         res.status(201).json({
             status: 'success',
-            classmgt
+            course
         });
     } catch (error) {
         console.log(error.message);

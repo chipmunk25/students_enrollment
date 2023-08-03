@@ -1,9 +1,9 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import FormBuilder from "../builder";
 import ValidationSchema from "../validation";
-const FormWizard = ({ initialValues, fields, validations, onSubmit }) => {
+const FormWizard = ({ initialValues, edittedValues, fields, validations, onSubmit }) => {
   const validationSchema = useMemo(() => {
     return Yup.object().shape(
       Object.fromEntries(
@@ -14,6 +14,14 @@ const FormWizard = ({ initialValues, fields, validations, onSubmit }) => {
       )
     );
   }, [validations]);
+
+  useEffect(() => {
+    if (edittedValues) {
+      Object.keys(initialValues).map((key) => {
+        formik.setFieldValue(key, edittedValues[key]);
+      })
+    }
+  }, [edittedValues])
   const formik = useFormik({
     initialValues,
     validationSchema,

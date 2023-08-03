@@ -59,6 +59,8 @@ const ChipFormBuilder = ({ config, formik }) => {
                     formik.touched[formInput.name] &&
                     formik.errors[formInput.name]
                   }
+                  value={formik.values[formInput.name]}
+
                   onBlur={formik.handleBlur}
                   onChange={(value) => {
                     formik.setFieldValue(formInput.name, value)
@@ -74,6 +76,8 @@ const ChipFormBuilder = ({ config, formik }) => {
                     formik.touched[formInput.name] &&
                     formik.errors[formInput.name]
                   }
+                  value={formik.values[formInput.name]}
+
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
                 />
@@ -87,6 +91,8 @@ const ChipFormBuilder = ({ config, formik }) => {
                     formik.touched[formInput.name] &&
                     formik.errors[formInput.name]
                   }
+                  value={formik.values[formInput.name]}
+
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
                 />

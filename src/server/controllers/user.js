@@ -4,7 +4,6 @@ const HttpException = require('../middlewares/http-exception');
 const loggerUtil = require('../utils/loggerUtil');
 const tokenUtil = require('../utils/tokenUtil');
 const validateEmail = async email => {
-    console.log(email)
     try {
         const emailVal = await prisma.users.findUnique({
             where: {

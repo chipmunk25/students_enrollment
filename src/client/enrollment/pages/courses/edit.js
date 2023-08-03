@@ -5,10 +5,10 @@ import { useUpdateCourseMutation } from '../../../appQueryHooks/hooks/course/use
 import Spinner from "../../../shared/Spinner"
 import moment from "moment"
 const Edit = ({ detail }) => {
-    const useCourse = useUpdateCourseMutation()
+    const useUpdate = useUpdateCourseMutation()
     return (
         <div>
-            {useCourse.isLoading && <Spinner />}
+            {useUpdate.isLoading && <Spinner />}
             <FormWizard fields={[{
                 type: Constant.TEXT,
                 name: "courseName",
@@ -54,7 +54,12 @@ const Edit = ({ detail }) => {
                     obj.startDate = moment(values.startDate)
                     obj.duration = parseInt(values.duration)
                     console.log(obj);
-                    useCourse.mutate(obj)
+                    for (const key in obj) {
+                        if (typeof obj[key] === 'string') {
+                            obj[key] = obj[key].trim();
+                        }
+                    }
+                    useUpdate.mutate(obj)
                 }}
             />
         </div>

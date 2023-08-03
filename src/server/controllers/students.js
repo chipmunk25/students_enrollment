@@ -1,9 +1,23 @@
 const prisma = require('../utils/prismaUtil');
 const HttpException = require('../middlewares/http-exception');
 const loggerUtil = require('../utils/loggerUtil');
+const cloudinary = require('../utils/cloudinaryUtil');
+const moment = require("moment")
 exports.registerStudent = async (req, res, next) => {
     const { classId, ...data } = req.body
     try {
+        const photo = req.file ? req.file.path : undefined;
+        if (photo) {
+            const uploaded = await cloudinary.uploader.upload(photo, {
+                folder: 'enrollment'
+            });
+            if (uploaded) {
+                data.photograph = uploaded.secure_url;
+            }
+        }
+        const parsedDate = new Date(data.dateOfBirth);
+        // Convert the Date object to ISO-8601 DateTime format
+        data.dateOfBirth = parsedDate.toISOString()
         const student = await prisma.students.create({
             data
         });
@@ -46,6 +60,18 @@ exports.UpdateStudent = async (req, res, next) => {
     const { studentId } = req.params;
     const data = req.body;
     try {
+        const photo = req.file ? req.file.path : undefined;
+        if (photo) {
+            const uploaded = await cloudinary.uploader.upload(photo, {
+                folder: 'enrollment'
+            });
+            if (uploaded) {
+                data.photograph = uploaded.secure_url;
+            }
+        }
+        const parsedDate = new Date(data.dateOfBirth);
+        // Convert the Date object to ISO-8601 DateTime format
+        data.dateOfBirth = parsedDate.toISOString()
         const student = await prisma.students.update({
             where: {
                 studentId
@@ -80,5 +106,18 @@ exports.changeStudentClass = async (req, res, next) => {
         console.log(error.message);
         loggerUtil.error(error.message);
         next(new HttpException(422, error.message));
+    }
+};
+exports.getStudents = async (req, res, next) => {
+    try {
+        const students = await prisma.students.findMany({});
+        res.status(200).json({
+            status: 'success',
+            students
+        });
+    } catch (error) {
+        console.log(error.message);
+        loggerUtil.error(error.message);
+        next(new HttpException(404, error.message));
     }
 };

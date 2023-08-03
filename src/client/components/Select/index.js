@@ -1,9 +1,7 @@
 import { IoChevronDownOutline, IoCloseOutline } from "react-icons/io5";
 import Select, { components } from "react-select";
-
 import classNames from "classnames";
 import { forwardRef } from "react";
-
 const DropdownIndicator = (props) => {
   return (
     <components.DropdownIndicator {...props}>
@@ -63,10 +61,9 @@ const CSelect = forwardRef((props, ref) => {
     }, 0);
     return classNames(
       isFocused ? controlStyles.focus : controlStyles.nonFocus,
-      `${controlStyles.base} ${border} ${
-        readOnly
-          ? "bg-gray-100 hover:cursor-not-allowed"
-          : "bg-white hover:cursor-pointer"
+      `${controlStyles.base} ${border} ${readOnly
+        ? "bg-gray-100 hover:cursor-not-allowed"
+        : "bg-white hover:cursor-pointer"
       } `
     );
   };
@@ -79,7 +76,9 @@ const CSelect = forwardRef((props, ref) => {
       closeMenuOnSelect={true}
       hideSelectedOptions={false}
       unstyled
+      menuPortalTarget={document.body}
       styles={{
+        menuPortal: base => ({ ...base, zIndex: 9999 }),
         input: (base) => ({
           ...base,
           "input:focus": {

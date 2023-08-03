@@ -1,63 +1,108 @@
-import React, { } from 'react';
+import React from 'react';
 import Constant from "@utils/constant";
 import FormWizard from '../../../components/forms/Wizard';
-import { useUpdateCourseMutation } from '../../../appQueryHooks/hooks/course/useMutation';
 import Spinner from "../../../shared/Spinner"
 import moment from "moment"
+import { useUpdateStudentMutation } from '../../../appQueryHooks/hooks/student/useMutation';
 const Edit = ({ detail }) => {
-    const useCourse = useUpdateCourseMutation()
+    const { photograph, ...rest } = detail
+    const useUpdate = useUpdateStudentMutation()
     return (
         <div>
-            {useCourse.isLoading && <Spinner />}
+            {useUpdate.isLoading && <Spinner />}
             <FormWizard fields={[{
                 type: Constant.TEXT,
-                name: "courseName",
-                label: "Enter Course Name",
-                placeholder: "Enter Course Name",
+                name: "studentId",
+                label: "Student ID",
+                placeholder: "Enter Student ID",
                 autoFocus: true,
                 required: true,
             },
             {
-                type: Constant.DATE,
-                name: "startDate",
-                label: "Start Date",
+                type: Constant.TEXT,
+                name: "name",
+                label: "Name",
                 required: true,
+            }, {
+                type: Constant.DATE,
+                name: "dateOfBirth",
+                label: "Date of Birth",
+                required: true,
+            }, {
+                type: Constant.SELECT,
+                name: "gender",
+                label: "Gender",
+                required: true,
+                options: genders
+            }, {
+                type: Constant.SELECT,
+                name: "residency",
+                label: "Residency",
+                required: true,
+                options: residencies
+            }, {
+                type: Constant.SELECT,
+                name: "status",
+                label: "Status",
+                required: true,
+                options: statuses
             },
             {
-                type: Constant.NUMBER,
-                name: "duration",
-                label: "Duration",
-                placeholder: "Enter Duration",
-                required: true,
+                type: Constant.IMAGE,
+                name: "photograph",
+                label: "Photo",
+                defaultValue: photograph,
+                // required: true,
             },
             {
                 type: Constant.SUBMIT,
                 primary: true,
-                title: "Update",
+                title: "Save",
                 fluid: true,
             },
             ]}
-                edittedValues={{ ...detail, startDate: moment(detail?.startDate).format("YYYY-MM-DD") }}
+                edittedValues={{ ...rest, dateOfBirth: moment(rest?.dateOfBirth).format("YYYY-MM-DD") }}
                 initialValues={{
-                    courseName: '',
-                    startDate: '',
-                    duration: 0
+                    studentId: '',
+                    name: '',
+                    photograph: '',
+                    status: { label: '', value: '' },
+                    residency: { label: '', value: '' },
+                    gender: { label: "Male", value: "Male", },
+                    dateOfBirth: '',
                 }}
                 validations={{
-                    courseName: ["string", "Course Name"],
-                    startDate: ["date", "Start Date"],
-                    duration: ["number", "Duration"],
+                    studentId: ["string", "Student ID"],
+                    name: ["string", "Student Name"],
+                    // photograph: ["image", "Photo"],
+                    status: ["object", "Status"],
+                    residency: ["object", "Residency"],
+                    gender: ["object", "Gender"],
+                    dateOfBirth: ["date", "Date of Birth"],
                 }}
                 onSubmit={(values) => {
-                    const obj = values
-                    obj.id = detail.id
-                    obj.startDate = moment(values.startDate)
-                    obj.duration = parseInt(values.duration)
+                    const { photgraph, ...obj } = values
+                    if (typeof photograph === 'string') {
+                    } else {
+                        obj.photgraph = photgraph
+                    }
+                    obj.gender = values?.gender?.value
+                    obj.status = values?.status?.value
+                    obj.residency = values?.residency?.value
+                    obj.dateOfBirth = moment(values.dateOfBirth)
+                    for (const key in obj) {
+                        if (typeof obj[key] === 'string') {
+                            obj[key] = obj[key].trim();
+                        }
+                    }
                     console.log(obj);
-                    useCourse.mutate(obj)
+                    useUpdate.mutate(obj)
                 }}
             />
         </div>
     );
 };
+const genders = [{ label: "Male", value: "Male", }, { label: "Female", value: "Female", },]
+const residencies = [{ label: "on-campus", value: "on_campus", }, { label: "off-campus", value: "off_campus", },]
+const statuses = [{ label: "Regular", value: "regular", }, { label: "Foreign", value: "foreign", }, { label: "Fee Paying", value: "fee_paying", }, { label: "Distance", value: "distance", },]
 export default Edit;

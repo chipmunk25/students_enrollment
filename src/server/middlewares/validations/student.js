@@ -37,7 +37,6 @@ exports.checkStudentsInClass = async (req, res, next) => {
         }
     });
     if (studentsExist) {
-        console.log(studentsExist)
         loggerUtil.error('Students Already Have a Class');
         next(new HttpException(422, 'Students Already Have a Class'));
     } else {

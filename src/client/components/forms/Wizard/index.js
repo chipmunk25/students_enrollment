@@ -18,7 +18,13 @@ const FormWizard = ({ initialValues, edittedValues, fields, validations, onSubmi
   useEffect(() => {
     if (edittedValues) {
       Object.keys(initialValues).map((key) => {
-        formik.setFieldValue(key, edittedValues[key]);
+        const opt = findSelectOption(fields, key)
+        if (opt) {
+          const val = checkSelectVal(opt.options, edittedValues[key])
+          formik.setFieldValue(key, val);
+        } else {
+          formik.setFieldValue(key, edittedValues[key]);
+        }
       })
     }
   }, [edittedValues])
@@ -35,4 +41,14 @@ const FormWizard = ({ initialValues, edittedValues, fields, validations, onSubmi
     </div>
   );
 };
+const checkSelectVal = (options, option) => {
+  const val = typeof option === 'string' ? options?.find(o => o.value === option) : option
+  // console.log(val)
+  return val
+}
+const findSelectOption = (options, option) => {
+  const opt = options.find(o => o.type === 'select' && o.name === option)
+  // console.log(opt, option)
+  return opt
+}
 export default FormWizard;

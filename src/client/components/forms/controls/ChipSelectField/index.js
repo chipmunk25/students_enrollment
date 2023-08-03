@@ -7,7 +7,6 @@ const ChipSelectField = (props) => {
   const { label, errorMessage, required, ...rest } = props;
   const theme = useThemeStore((state) => state);
   const [isFocus, setIsFocus] = useState(false);
-  const [value, setValue] = useState({});
   return (
     <div
       className={classNames("relative mx-auto", {
@@ -20,10 +19,6 @@ const ChipSelectField = (props) => {
       <div className="relative">
         <CSelect
           setIsFocus={setIsFocus}
-          value={value}
-          onChange={(value) => {
-            setValue(value);
-          }}
           {...rest}
           border={errorMessage ? "border-error" : `border-${theme.color}-300`}
         />
@@ -42,9 +37,9 @@ const ChipSelectField = (props) => {
                 " absolute text-sm text-zinc-950 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 duration-300 transform   z-10 origin-[0] bg-white  px-2    left-1",
                 {
                   "-translate-y-4 scale-75 top-2 px-2 ":
-                    value?.value || isFocus,
+                    rest?.value?.value || isFocus,
                   "scale-100 top-1/2 -translate-y-1/2":
-                    !isFocus || !value?.value,
+                    !isFocus || !rest?.value?.value,
                 }
               )}
             >

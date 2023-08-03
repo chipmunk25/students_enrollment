@@ -1,33 +1,56 @@
 import React from 'react';
 import Constant from "@utils/constant";
 import FormWizard from '../../../components/forms/Wizard';
-import { useSaveCourseMutation } from '../../../appQueryHooks/hooks/course/useMutation';
 import Spinner from "../../../shared/Spinner"
 import moment from "moment"
+import { useSaveStudentMutation } from '../../../appQueryHooks/hooks/student/useMutation';
 const Add = () => {
-    const useCourse = useSaveCourseMutation()
+    const useSave = useSaveStudentMutation()
     return (
         <div>
-            {useCourse.isLoading && <Spinner />}
+            {useSave.isLoading && <Spinner />}
             <FormWizard fields={[{
                 type: Constant.TEXT,
-                name: "courseName",
-                label: "Enter Course Name",
-                placeholder: "Enter Course Name",
+                name: "studentId",
+                label: "Student ID",
+                placeholder: "Enter Student ID",
                 autoFocus: true,
                 required: true,
             },
             {
-                type: Constant.DATE,
-                name: "startDate",
-                label: "Start Date",
+                type: Constant.TEXT,
+                name: "name",
+                label: "Name",
+                placeholder: "Enter Name",
                 required: true,
+            }, {
+                type: Constant.DATE,
+                name: "dateOfBirth",
+                label: "Date of Birth",
+                required: true,
+            }, {
+                type: Constant.SELECT,
+                name: "gender",
+                label: "Gender",
+                required: true,
+                options: genders
+            }, {
+                type: Constant.SELECT,
+                name: "residency",
+                label: "Residency",
+                required: true,
+                options: residencies
+            }, {
+                type: Constant.SELECT,
+                name: "status",
+                label: "Status",
+                required: true,
+                options: statuses
             },
             {
-                type: Constant.NUMBER,
-                name: "duration",
-                label: "Duration",
-                placeholder: "Enter Duration",
+                type: Constant.IMAGE,
+                name: "photograph",
+                label: "Photo",
                 required: true,
             },
             {
@@ -38,24 +61,42 @@ const Add = () => {
             },
             ]}
                 initialValues={{
-                    courseName: '',
-                    startDate: '',
-                    duration: 0
+                    studentId: '',
+                    name: '',
+                    photograph: '',
+                    status: '',
+                    residency: '',
+                    gender: '',
+                    dateOfBirth: '',
                 }}
                 validations={{
-                    courseName: ["string", "Course Name"],
-                    startDate: ["date", "Start Date"],
-                    duration: ["number", "Duration"],
+                    studentId: ["string", "Student ID"],
+                    name: ["string", "Student Name"],
+                    photograph: ["image", "Photo"],
+                    status: ["object", "Status"],
+                    residency: ["object", "Residency"],
+                    gender: ["object", "Gender"],
+                    dateOfBirth: ["date", "Date of Birth"],
                 }}
                 onSubmit={(values) => {
                     const obj = values
-                    obj.startDate = moment(values.startDate)
-                    obj.duration = parseInt(values.duration)
+                    obj.gender = values?.gender?.value
+                    obj.status = values?.status?.value
+                    obj.residency = values?.residency?.value
+                    obj.dateOfBirth = moment(values.dateOfBirth)
+                    for (const key in obj) {
+                        if (typeof obj[key] === 'string') {
+                            obj[key] = obj[key].trim();
+                        }
+                    }
                     console.log(obj);
-                    useCourse.mutate(obj)
+                    useSave.mutate(obj)
                 }}
             />
         </div>
     );
 };
+const genders = [{ label: "Male", value: "Male", }, { label: "Female", value: "Female", },]
+const residencies = [{ label: "on-campus", value: "on_campus", }, { label: "off-campus", value: "off_campus", },]
+const statuses = [{ label: "Regular", value: "regular", }, { label: "Foreign", value: "foreign", }, { label: "Fee Paying", value: "fee_paying", }, { label: "Distance", value: "distance", },]
 export default Add;

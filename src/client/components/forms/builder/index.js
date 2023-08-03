@@ -5,7 +5,8 @@ import {
   ChipInputField,
   ChipSelectField,
   ChipPasswordField,
-  ChipNumberField
+  ChipNumberField,
+  ChipImageField
 } from "../controls";
 import ChipButton from "../../ChipButton";
 import ChipDateField from "../controls/ChipNewDate";
@@ -97,6 +98,23 @@ const ChipFormBuilder = ({ config, formik }) => {
                   onChange={formik.handleChange}
                 />
               );
+            case Constant.IMAGE:
+              return (
+                <ChipImageField
+                  key={index}
+                  {...formInput}
+                  errorMessage={
+                    formik.touched[formInput.name] &&
+                    formik.errors[formInput.name]
+                  }
+                  value={formik.values[formInput.name]}
+
+                  onBlur={formik.handleBlur}
+                  onChange={(value) => {
+                    formik.setFieldValue(formInput.name, value)
+                  }}
+                />
+              );
             case Constant.SELECT:
               return (
                 <ChipSelectField
@@ -109,7 +127,9 @@ const ChipFormBuilder = ({ config, formik }) => {
                     formik.errors[formInput.name]
                   }
                   onBlur={formik.handleBlur}
-                  onChange={formik.handleChange}
+                  onChange={(value) => {
+                    formik.setFieldValue(formInput.name, value)
+                  }}
                   allowClear
                 />
               );
@@ -129,4 +149,5 @@ const ChipFormBuilder = ({ config, formik }) => {
     </React.Fragment>
   );
 };
+
 export default ChipFormBuilder;

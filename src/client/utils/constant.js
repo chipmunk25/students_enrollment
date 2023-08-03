@@ -10,6 +10,7 @@ const Constant = {
   CHECKBOX: "checkbox",
   TEXTAREA: "textarea",
   UPLOAD: "upload",
+  IMAGE: "image",
   BUTTON: "button",
   SUBMIT: "submit",
   SIZES: {

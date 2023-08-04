@@ -12,9 +12,9 @@ const validSave = [
     classmgt.createClass
 ]
 const validUpdate = [
-    ...classSchema,
     ...IdSchema,
     validateRequestSchema,
+    validator.checkClassRep,
     classmgt.UpdateClass
 ]
 const ManageClassRouter = Router();

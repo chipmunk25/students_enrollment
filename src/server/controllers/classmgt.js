@@ -76,6 +76,16 @@ exports.changeStudentClass = async (req, res, next) => {
 exports.getClasses = async (req, res, next) => {
     try {
         const classes = await prisma.classmgt.findMany({
+            select: {
+                id: true,
+                className: true,
+                maxClassSize: true,
+                student: {
+                    select: {
+                        name: true
+                    }
+                },
+            }
         });
         res.status(200).json({
             status: 'success',

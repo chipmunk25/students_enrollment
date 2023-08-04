@@ -7,12 +7,14 @@ import { formatResponse } from "../../../utils/common"
 import Add from './add';
 import Edit from './edit';
 import ChipButtonGroup from '../../../components/ChipButtonGroup';
-import RegisterStudents from './lists';
+import ClassRep from './rep';
+import Loader from "../../../shared/Loader"
 const Classes = () => {
     const { changeModal } = useCommonStore()
     const { data, isLoading } = useClassesQuery()
     return (
         <div className='w-full'>
+            {isLoading && <Loader />}
             <DataTable
                 title="Classes"
                 searchTerms={["className"]}
@@ -38,6 +40,12 @@ const Classes = () => {
                         key: "maxClassSize",
                         title: "Max Class Size",
                     }, {
+                        key: "student",
+                        title: "Class Representative",
+                        render: (_, { student }) => (
+                            <span>{student?.name}</span>
+                        )
+                    }, {
                         key: 'action',
                         title: 'Actions',
                         render: (_, row) => (
@@ -55,12 +63,12 @@ const Classes = () => {
                                                 changeModal(modal);
                                             }
                                         }, {
-                                            title: "Register Students", onClick: () => {
+                                            title: "Class Rep", onClick: () => {
                                                 const modal = {
                                                     show: true,
-                                                    title: "Register Students to Class",
+                                                    title: "Class Representative",
                                                     size: "medium",
-                                                    content: <RegisterStudents detail={row} />,
+                                                    content: <ClassRep detail={row} />,
                                                 };
                                                 changeModal(modal);
                                             }

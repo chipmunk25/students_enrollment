@@ -19,3 +19,21 @@ exports.checkClass = async (req, res, next) => {
         next();
     }
 };
+exports.checkClassRep = async (req, res, next) => {
+    const { classRepresentative } = req.body
+    const classExist = await prisma.classmgt.findFirst({
+        where: {
+            OR: [
+                {
+                    classRepresentative,
+                }
+            ]
+        }
+    });
+    if (classExist) {
+        loggerUtil.error('Student is Already a Rep');
+        next(new HttpException(422, 'Student is Already a Rep'));
+    } else {
+        next();
+    }
+};

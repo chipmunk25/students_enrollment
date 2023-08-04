@@ -52,9 +52,12 @@ const Courses = () => {
                             key: "registeredstudents",
                             title: "Total Registered Students",
                             render: (_, { id, registeredstudents }) => (
-                                <button onClick={() => {
-                                    navigate(`/courses/${id}/registered`)
-                                }} title='Click to View' className='text-blue-500 underline '>{registeredstudents?.length}</button>
+                                <div>
+                                    {registeredstudents?.length > 0 ? <button onClick={() => {
+                                        navigate(`/courses/${id}/registered`)
+                                    }} title='Click to View' className='text-blue-500 underline '>{registeredstudents?.length}</button> : <span>{registeredstudents?.length} </span>}
+                                </div>
+
                             )
                         },
                         {
@@ -129,9 +132,12 @@ const Courses = () => {
                             key: "registeredstudents",
                             title: "Total Registered Students",
                             render: (_, { id, registeredstudents }) => (
-                                <button onClick={() => {
-                                    navigate(`/courses/${id}/registered`)
-                                }} title='Click to View' className='text-blue-500 underline '>{registeredstudents?.length}</button>
+                                <div>
+                                    {registeredstudents?.length > 0 ? <button onClick={() => {
+                                        navigate(`/courses/${id}/registered`)
+                                    }} title='Click to View' className='text-blue-500 underline '>{registeredstudents?.length}</button> : <span>{registeredstudents?.length} </span>}
+                                </div>
+
                             )
                         },
                         {

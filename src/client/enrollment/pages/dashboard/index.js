@@ -4,7 +4,7 @@ import { useCoursesQuery } from '../../../appQueryHooks/hooks/course/useQuery';
 import { formatResponse } from '../../../utils/common';
 import Card from './card';
 
-const colors = ['blue', 'red', 'green']
+const colors = ['blue', 'red', 'green', 'indigo', 'rose', 'slate', 'stone', 'yellow', 'lime', 'cyan', 'violet', 'pink']
 const Dashboard = () => {
     const { data, isLoading } = useCoursesQuery()
 

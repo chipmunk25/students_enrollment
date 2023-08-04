@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
 import { IoArrowBackCircleOutline, IoPrintOutline } from 'react-icons/io5';
 import { AiOutlineFilePdf } from 'react-icons/ai';
-import ChipButton from '../../../components/ChipButton';
 import { useReactToPrint } from 'react-to-print';
 import PrintContainer from './print';
 import { useRegisteredCoursesQuery, useSingleCourseQuery } from '../../../appQueryHooks/hooks/course/useQuery';

@@ -34,7 +34,7 @@ const ChipMultiSelectField = (props) => {
             <label
               htmlFor="checker"
               className={classNames(
-                " absolute text-sm text-zinc-950 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 duration-300 transform   z-10 origin-[0] bg-white  px-2    left-1",
+                `absolute text-${theme.fontSize} text-zinc-950 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 duration-300 transform   z-10 origin-[0] bg-white  px-2    left-1`,
                 {
                   "-translate-y-4 scale-75 top-2 px-2 ":
                     rest?.value?.length > 0 || isFocus,

@@ -20,7 +20,7 @@ const validUpdate = [
     course.UpdateCourse
 ]
 ManageCourseRouter.post('/', auth.verifyToken, validSave);
-ManageCourseRouter.post('/course-registration', auth.verifyToken, course.registerStudentCourse);
+ManageCourseRouter.post('/course-registration', auth.verifyToken, validator.checkstudentsInCourse, course.registerStudentCourse);
 ManageCourseRouter.get('/', auth.verifyToken, course.getCourses);
 ManageCourseRouter.get('/:id', auth.verifyToken, [...IdSchema, validateRequestSchema], course.getSingleCourse);
 ManageCourseRouter.get('/registered/:courseId', auth.verifyToken, [...CourseIdSchema, validateRequestSchema], course.getCourseRegisteredStudents);

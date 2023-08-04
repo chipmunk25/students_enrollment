@@ -1,6 +1,8 @@
 import React from 'react';
+import useThemeStore from '../../../../hooks/useTheme';
 
 const Uploader = ({ label, name, required, setFile, handleImageUpload, file, onChange }) => {
+    const theme = useThemeStore()
     return (
         <div className="w-full">
             <div className='flex gap-2'>
@@ -32,7 +34,7 @@ const Uploader = ({ label, name, required, setFile, handleImageUpload, file, onC
                         <label
 
                             htmlFor="photograph"
-                            className="flex items-center justify-start p-2 text-sm font-semibold rounded-md cursor-pointer bg-grey-200">
+                            className={`flex items-center justify-start p-2 text-${theme.fontSize} font-semibold rounded-md cursor-pointer bg-grey-200`}>
                             <span className="font-semibold text-md">Choose an Image</span>
                             <input
                                 type="file"

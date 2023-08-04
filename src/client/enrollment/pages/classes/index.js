@@ -65,10 +65,10 @@ const Classes = () => {
                                                     changeModal(modal);
                                                 }
                                             }, {
-                                                title: "Class Rep", onClick: () => {
+                                                title: row?.student?.name ? "Change Rep" : "Assign Class Rep", onClick: () => {
                                                     const modal = {
                                                         show: true,
-                                                        title: "Class Representative",
+                                                        title: row?.student?.name ? "Change Rep" : "Class Representative",
                                                         size: "medium",
                                                         content: <ClassRep detail={row} />,
                                                     };

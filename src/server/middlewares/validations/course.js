@@ -19,3 +19,23 @@ exports.checkCourse = async (req, res, next) => {
         next();
     }
 };
+exports.checkstudentsInCourse = async (req, res, next) => {
+    const { studentIds } = req.body
+    const courseExist = await prisma.registeredstudents.findMany({
+        where: {
+            studentId: { in: studentIds?.map(item => item.studentId) },
+            courseId: studentIds[0]?.courseId
+        }
+    });
+    if (courseExist.length > 0) {
+        let message = '';
+        courseExist.map((error) => {
+            console.log(error)
+            message += error.studentId + ', ';
+        });
+        loggerUtil.error(`Students with ID (${message}) ${courseExist.length > 1 ? "have" : "has"} Already Registered this Course`);
+        next(new HttpException(422, `Students with ID (${message}) ${courseExist.length > 1 ? "have" : "has"} Already Registered this Course`));
+    } else {
+        next();
+    }
+};

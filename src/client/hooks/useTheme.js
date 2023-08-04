@@ -4,6 +4,7 @@ const initialState = {
   size: "small",
   border: "border-0",
   color: "blue",
+  fontSize: "base",
   weight: 500,
   lighttext: 500,
   lightbg: 100,

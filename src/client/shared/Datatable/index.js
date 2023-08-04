@@ -160,7 +160,7 @@ const DataTable = ({
                       className={`py-2 bg-${theme.color}-${theme.weight}  sticky top-0  z-[99999999999]`}
                       scope="col"
                     >
-                      <span className="text-white text-sm px-[15px] py-2  font-normal  z-[99999999999]">
+                      <span className={`text-white text-${theme.fontSize} px-[15px] py-2  font-normal  z-[99999999999]`}>
                         {col?.title}
                       </span>
                     </th>

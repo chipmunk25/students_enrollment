@@ -46,7 +46,7 @@ const RenderArrayMenu = (props) => {
   return (
     <ol
       className={classNames(
-        `space-y-2 text-sm text-${theme.color}-${theme.lighttext} dark:text-${theme.color}-${theme.darktext} `,
+        `space-y-2 text-${theme.fontSize} text-${theme.color}-${theme.lighttext} dark:text-${theme.color}-${theme.darktext} `,
         {
           "py-2 pl-4 pr-2": props.sub,
         }
@@ -72,7 +72,7 @@ const RenderArrayMenu = (props) => {
               >
                 <span>{menu?.icon && ChipIcon(menu?.icon)}</span>
                 <span
-                  className={classNames("text-sm", {
+                  className={classNames(`text-${theme.fontSize}`, {
                     "pl-4": props.parentIndex + 1 && props.hasArray,
                     "pl-8": props.parentIndex + 1 && !props.hasArray,
                   })}

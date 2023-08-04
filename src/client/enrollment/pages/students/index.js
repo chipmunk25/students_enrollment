@@ -11,6 +11,7 @@ import Edit from './edit';
 import ChipButtonGroup from '../../../components/ChipButtonGroup';
 import RegisterStudents from './lists';
 import { genders, residencies, statuses, findLabel } from './constant';
+import ClassRep from './rep';
 
 const Students = () => {
     const { changeModal } = useCommonStore()
@@ -100,7 +101,7 @@ const Students = () => {
                                                         show: true,
                                                         title: "Set Student as Class Ref",
                                                         size: "medium",
-                                                        content: <RegisterStudents detail={row} />,
+                                                        content: <ClassRep detail={row} />,
                                                     };
                                                     changeModal(modal);
                                                 }

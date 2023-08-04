@@ -17,7 +17,7 @@ const ChipDate = ({ fluid }) => {
       onClick={onClick}
       ref={ref}
       type="button"
-      className={`inline-flex justify-start w-full px-3 py-2 text-sm bg-white border border-${theme.color}-300 rounded-md shadow outline-none appearance-none focus:border focus:border-${theme.color}-300 focus:ring-0 placeholder:text-zinc-500 text-zinc-950`}
+      className={`inline-flex justify-start w-full px-3 py-2 text-${theme.fontSize} bg-white border border-${theme.color}-300 rounded-md shadow outline-none appearance-none focus:border focus:border-${theme.color}-300 focus:ring-0 placeholder:text-zinc-500 text-zinc-950`}
     >
       {format(new Date(value), "dd MMMM yyyy")}
     </button>
@@ -68,7 +68,7 @@ const ChipDate = ({ fluid }) => {
                   disabled={prevMonthButtonDisabled}
                   type="button"
                   className={classNames(
-                    "inline-flex p-1 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-blue-500",
+                    `inline-flex p-1 text-${theme.fontSize} font-medium text-gray-700 bg-white border border-gray-300 rounded shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-blue-500`,
                     {
                       "cursor-not-allowed opacity-50": prevMonthButtonDisabled,
                     }
@@ -82,7 +82,7 @@ const ChipDate = ({ fluid }) => {
                   disabled={nextMonthButtonDisabled}
                   type="button"
                   className={classNames(
-                    "inline-flex p-1 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-blue-500",
+                    `inline-flex p-1 text-${theme.fontSize} font-medium text-gray-700 bg-white border border-gray-300 rounded shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-blue-500`,
                     {
                       "cursor-not-allowed opacity-50": nextMonthButtonDisabled,
                     }

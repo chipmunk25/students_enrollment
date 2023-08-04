@@ -1,27 +1,27 @@
 import React from 'react';
-import { useStudentsQuery } from '../../../appQueryHooks/hooks/student/useQuery';
 import Constant from "@utils/constant";
 import FormWizard from '../../../components/forms/Wizard';
 import { formatResponse } from '../../../utils/common';
 import { useUpdateClassMutation } from '../../../appQueryHooks/hooks/classes/useMutation';
+import { useClassesQuery } from '../../../appQueryHooks/hooks/classes/useQuery';
 const ClassRep = ({ detail }) => {
-    const { data, } = useStudentsQuery()
+    const { data, } = useClassesQuery()
     const useUpdate = useUpdateClassMutation()
     return (
         <div>
             <div className='mb-4'>
-                <span>Class Representation for {detail?.className}</span>
+                <span>Choose {detail?.name} as Class Rep</span>
             </div>
             <FormWizard fields={[
                 {
                     type: Constant.SELECT,
-                    name: "classRepresentative",
-                    label: "Class Rep.",
+                    name: "id",
+                    label: "Class",
                     required: true,
-                    options: formatResponse(data, "students", [])?.map(item => {
+                    options: formatResponse(data, "classes", [])?.map(item => {
                         return {
-                            value: item?.studentId,
-                            label: item?.name
+                            value: item?.id,
+                            label: item?.className
                         }
                     })
                 },
@@ -33,15 +33,15 @@ const ClassRep = ({ detail }) => {
                 },
             ]}
                 initialValues={{
-                    classRepresentative: '',
+                    id: '',
                 }}
                 validations={{
-                    classRepresentative: ["object", "Class Rep"],
+                    id: ["object", "Class"],
                 }}
                 onSubmit={(values) => {
                     const obj = values
-                    obj.id = detail.id
-                    obj.classRepresentative = values?.classRepresentative?.value
+                    obj.classRepresentative = detail.studentId
+                    obj.id = values?.id?.value
                     for (const key in obj) {
                         if (typeof obj[key] === 'string') {
                             obj[key] = obj[key].trim();

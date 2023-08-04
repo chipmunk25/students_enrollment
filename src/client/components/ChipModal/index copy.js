@@ -14,7 +14,7 @@ const Modal = ({ title, children, size }) => {
   return (
     <div>
       <div
-        className="fixed left-0 top-0 z-[1055] h-full w-full my-auto overflow-y-auto overflow-x-hidden outline-none"
+        className="fixed left-0 top-0 z-[1055] h-full w-full overflow-y-auto overflow-x-hidden outline-none"
         id="exampleModalScrollable"
         tabIndex="-1"
         aria-labelledby="exampleModalScrollableLabel"

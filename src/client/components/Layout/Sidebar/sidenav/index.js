@@ -51,36 +51,36 @@ const SidebarMenu = (props) => {
   }, [props.activeRoute]);
   return <RenderArrayMenu array={props.array} activeRoute={activeRoute} />;
 };
-const sideNav = [
-  {
-    key: "students",
-    item: "Students",
-    route: "students",
-    icon: IoPeopleSharp,
-  },
-  {
-    key: "dashboard",
-    item: "Dashboard",
-    route: "dashboard",
-    icon: IoAppsSharp,
-  },
-  {
-    key: "class",
-    item: "Class",
-    route: "classes",
-    icon: IoDiamondSharp,
-  },
-  {
-    key: "course",
-    item: "Courses",
-    route: "courses",
-    icon: IoFileTrayStackedSharp,
-  }, {
-    key: "logout",
-    item: "Logout",
-    route: "signout",
-    icon: IoLogOutSharp,
-  },
+const sideNav = [{
+  key: "dashboard",
+  item: "Dashboard",
+  route: "dashboard",
+  icon: IoAppsSharp,
+},
+{
+  key: "students",
+  item: "Students",
+  route: "students",
+  icon: IoPeopleSharp,
+},
+
+{
+  key: "class",
+  item: "Class",
+  route: "classes",
+  icon: IoDiamondSharp,
+},
+{
+  key: "course",
+  item: "Courses",
+  route: "courses",
+  icon: IoFileTrayStackedSharp,
+}, {
+  key: "logout",
+  item: "Logout",
+  route: "signout",
+  icon: IoLogOutSharp,
+},
 
 ];
 export default SideNav;

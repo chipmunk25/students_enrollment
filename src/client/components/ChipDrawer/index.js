@@ -19,7 +19,7 @@ const Drawer = ({ isDrawerOpen, onClose, children, right, title }) => {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 transition-opacity backdrop-blur-sm bg-black/30" />
+          <div onClick={onClose} className="fixed inset-0 transition-opacity backdrop-blur-sm bg-black/30" />
         </Transition.Child>
 
         <div className="fixed inset-0 overflow-hidden">

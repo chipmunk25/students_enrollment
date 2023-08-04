@@ -10,13 +10,6 @@ const Sidebar = ({ title }) => {
         <div className="pb-5">
           <span className="text-base font-semibold">{title}</span>
         </div>
-        <div>
-          <div className="text-sm font-normal ">
-            <div className="py-2">
-              <span>Logout</span>
-            </div>
-          </div>
-        </div>
       </div>
       <div className="py-5">
         <SideNav />

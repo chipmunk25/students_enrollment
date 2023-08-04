@@ -8,6 +8,7 @@ import useThemeStore from "../../hooks/useTheme";
 import useAuthStore from "../../hooks/auth";
 import { useUserQuery } from "../../appQueryHooks/hooks/users/useQuery"
 import SideNav from "./Sidebar/sidenav";
+import isBg from "../../assets/svg/bg.svg"
 const Layout = () => {
   const navigate = useNavigate()
   const [isRDrawerOpen, setIsRDrawerOpen] = useState(false);
@@ -15,7 +16,6 @@ const Layout = () => {
   const theme = useThemeStore((state) => state);
   const userId = useAuthStore(state => state.userId)
   const { data, isLoading } = useUserQuery(userId)
-  console.log(data, userId)
   useEffect(() => {
     if (!data && !isLoading) {
       setTimeout(() => {
@@ -25,7 +25,8 @@ const Layout = () => {
   }, [data, isLoading])
   return (
     <div
-      className={`w-full h-screen flex fixed bg-${theme.color}-${theme.lightbg} dark:bg-${theme.color}-${theme.darkbg}`}
+      style={{ backgroundImage: `url(${isBg})`, }}
+      className={`w-full h-screen bg-black flex fixed  dark:bg-${theme.color}-${theme.darkbg}`}
     >
       <Sidebar title="Student Enrollment" />
       <Drawer isDrawerOpen={isRDrawerOpen} onClose={toggleDrawer} title="Student Enrollment">

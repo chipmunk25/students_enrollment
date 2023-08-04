@@ -4,9 +4,11 @@ import React, { useEffect, useMemo, useState } from 'react';
 import FuzzySearch from 'fuzzy-search';
 import { ChipInputField } from '../../components/forms/controls';
 import { IoSearchOutline } from 'react-icons/io5';
+import useThemeStore from '../../hooks/useTheme';
 let searcher;
 const MobileTable = ({ columns, rows, searchTerms, title, actionTools, querySearch }) => {
     const [dataSource, setDataSource] = useState(rows);
+    const theme = useThemeStore()
     useEffect(() => {
         setDataSource(rows);
     }, [rows]);
@@ -36,7 +38,7 @@ const MobileTable = ({ columns, rows, searchTerms, title, actionTools, querySear
 
             {dataSource?.map((row, rowIndex) => (
                 <div className="flex flex-row flex-no-wrap w-full mb-4" key={rowIndex}>
-                    <div className="flex flex-col bg-gray-500">
+                    <div className={`flex flex-col bg-${theme.color}-500`}>
                         {columns?.map((col, columnIndex) => (
                             <span
                                 key={`table-row-cell-${columnIndex}`}

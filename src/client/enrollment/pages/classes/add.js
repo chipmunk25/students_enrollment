@@ -28,6 +28,7 @@ const Add = () => {
                 primary: true,
                 title: "Save",
                 fluid: true,
+                icon: useSave.isLoading && <Spinner />
             },
             ]}
                 initialValues={{

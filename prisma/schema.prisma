@@ -27,7 +27,7 @@ model classmgt {
   className           String         @db.VarChar(255)
   maxClassSize        Int            @default(0)
   student             students?      @relation(fields: [classRepresentative], references: [studentId])
-  classRepresentative String
+  classRepresentative String?
   studentclass        studentclass[]
 }
 

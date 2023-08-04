@@ -39,7 +39,7 @@ exports.UpdateClass = async (req, res, next) => {
     try {
         const classmgt = await prisma.classmgt.update({
             where: {
-                id
+                id: parseInt(id)
             },
             data
         });
@@ -71,5 +71,19 @@ exports.changeStudentClass = async (req, res, next) => {
         console.log(error.message);
         loggerUtil.error(error.message);
         next(new HttpException(422, error.message));
+    }
+};
+exports.getClasses = async (req, res, next) => {
+    try {
+        const classes = await prisma.classmgt.findMany({
+        });
+        res.status(200).json({
+            status: 'success',
+            classes
+        });
+    } catch (error) {
+        console.log(error.message);
+        loggerUtil.error(error.message);
+        next(new HttpException(404, error.message));
     }
 };

@@ -3,7 +3,7 @@ const HttpException = require('../http-exception');
 const loggerUtil = require('../../utils/loggerUtil');
 exports.checkClass = async (req, res, next) => {
     const { className } = req.body
-    const classExist = await prisma.students.findFirst({
+    const classExist = await prisma.classmgt.findFirst({
         where: {
             OR: [
                 {

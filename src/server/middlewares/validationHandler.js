@@ -5,7 +5,7 @@ exports.validationHandler = async (errors) => {
   for (const key in errors) {
     if (errors.hasOwnProperty(key)) {
       const element = errors[key];
-      errorFields.push({ field: element.path, message: element.message });
+      errorFields.push({ field: element.path, message: element.msg });
     }
   }
   return errorFields;

@@ -7,6 +7,7 @@ import Modal from '../../components/ChipModal';
 const Signin = lazyWithRetry(() => import('./Signin'));
 const SignOut = lazyWithRetry(() => import('./Signout'));
 const Courses = lazyWithRetry(() => import('./courses'));
+const Classes = lazyWithRetry(() => import('./classes'));
 const Students = lazyWithRetry(() => import('./students'));
 const Layout = lazyWithRetry(() => import('../../components/Layout'));
 // const Dashboard = lazyWithRetry(() => import('./Dashboard'));
@@ -26,6 +27,7 @@ const MainApp = () => {
                         {/* <Route index element={<Dashboard />} /> */}
                         {/* <Route path='dashboard' element={<Dashboard />} /> */}
                         <Route path='courses' element={<Courses />} />
+                        <Route path='classes' element={<Classes />} />
                         <Route path='students' element={<Students />} />
                     </Route>
                     <Route path="/signin" element={<Signin />} />

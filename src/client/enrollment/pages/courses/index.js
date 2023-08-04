@@ -18,7 +18,6 @@ const Courses = () => {
     return (
         <div className='w-full'>
             <div className="hidden md:block">
-
                 <DataTable
                     title="Courses"
                     searchTerms={["courseName"]}
@@ -61,7 +60,6 @@ const Courses = () => {
                         {
                             key: 'action',
                             title: 'Actions',
-
                             render: (_, row) => (
                                 <div className="flex items-center justify-end gap-2 max-w-48">
                                     <ChipButtonGroup btns={
@@ -139,7 +137,6 @@ const Courses = () => {
                         {
                             key: 'action',
                             title: 'Actions',
-
                             render: (_, row) => (
                                 <div className="flex items-center justify-end gap-2 max-w-48">
                                     <ChipButtonGroup btns={
@@ -172,7 +169,6 @@ const Courses = () => {
                         }
                     ]}
                     rows={formatResponse(data, 'courses', [])}
-
                 />
             </div>
         </div>

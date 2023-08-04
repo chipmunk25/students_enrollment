@@ -90,7 +90,7 @@ const Edit = ({ detail }) => {
                     obj.gender = values?.gender?.value
                     obj.status = values?.status?.value
                     obj.residency = values?.residency?.value
-                    obj.dateOfBirth = moment(values.dateOfBirth)
+                    obj.dateOfBirth = moment(values.dateOfBirth).format("YYYY-MM-DD")
                     for (const key in obj) {
                         if (typeof obj[key] === 'string') {
                             obj[key] = obj[key].trim();

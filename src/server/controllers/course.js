@@ -4,6 +4,9 @@ const loggerUtil = require('../utils/loggerUtil');
 exports.createCourse = async (req, res, next) => {
     const data = req.body
     try {
+        const parsedDate = new Date(data.startDate);
+        // Convert the Date object to ISO-8601 DateTime format
+        data.startDate = parsedDate.toISOString()
         const course = await prisma.coursemgt.create({
             data
         });
@@ -37,6 +40,9 @@ exports.UpdateCourse = async (req, res, next) => {
     const { id } = req.params;
     const data = req.body;
     try {
+        const parsedDate = new Date(data.startDate);
+        // Convert the Date object to ISO-8601 DateTime format
+        data.startDate = parsedDate.toISOString()
         const course = await prisma.coursemgt.update({
             where: {
                 id: parseInt(id)

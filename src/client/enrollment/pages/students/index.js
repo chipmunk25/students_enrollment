@@ -192,6 +192,16 @@ const Students = () => {
                                                     };
                                                     changeModal(modal);
                                                 }
+                                            }, {
+                                                title: "Class Rep", onClick: () => {
+                                                    const modal = {
+                                                        show: true,
+                                                        title: "Set Student as Class Ref",
+                                                        size: "medium",
+                                                        content: <ClassRep detail={row} />,
+                                                    };
+                                                    changeModal(modal);
+                                                }
                                             },
                                         ]
                                     } />

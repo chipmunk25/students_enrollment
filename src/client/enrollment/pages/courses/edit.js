@@ -51,7 +51,7 @@ const Edit = ({ detail }) => {
                 onSubmit={(values) => {
                     const obj = values
                     obj.id = detail.id
-                    obj.startDate = moment(values.startDate)
+                    obj.startDate = moment(values.startDate).format("YYYY-MM-DD")
                     obj.duration = parseInt(values.duration)
                     for (const key in obj) {
                         if (typeof obj[key] === 'string') {

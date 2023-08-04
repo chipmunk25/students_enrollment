@@ -4,6 +4,7 @@ const Constant = {
   NUMBER: "number",
   PASSWORD: "password",
   SELECT: "select",
+  MULTI: "multi",
   DATE: "date",
   RANGE: "daterange",
   RADIO: "radio",

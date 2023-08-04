@@ -6,7 +6,8 @@ import {
   ChipSelectField,
   ChipPasswordField,
   ChipNumberField,
-  ChipImageField
+  ChipImageField,
+  ChipMultiSelectField
 } from "../controls";
 import ChipButton from "../../ChipButton";
 import ChipDateField from "../controls/ChipNewDate";
@@ -118,6 +119,24 @@ const ChipFormBuilder = ({ config, formik }) => {
             case Constant.SELECT:
               return (
                 <ChipSelectField
+                  key={index}
+                  {...formInput}
+                  value={formik.values[formInput.name]}
+                  error={formik.errors[formInput.name]}
+                  errorMessage={
+                    formik.touched[formInput.name] &&
+                    formik.errors[formInput.name]
+                  }
+                  onBlur={formik.handleBlur}
+                  onChange={(value) => {
+                    formik.setFieldValue(formInput.name, value)
+                  }}
+                  allowClear
+                />
+              );
+            case Constant.MULTI:
+              return (
+                <ChipMultiSelectField
                   key={index}
                   {...formInput}
                   value={formik.values[formInput.name]}

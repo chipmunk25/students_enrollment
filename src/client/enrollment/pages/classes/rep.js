@@ -9,7 +9,9 @@ const ClassRep = ({ detail }) => {
     const useUpdate = useUpdateClassMutation()
     return (
         <div>
-            <span>Select Class Representation for {detail?.className}</span>
+            <div className='mb-4'>
+                <span>Class Representation for {detail?.className}</span>
+            </div>
             <FormWizard fields={[
                 {
                     type: Constant.SELECT,
@@ -32,7 +34,6 @@ const ClassRep = ({ detail }) => {
             ]}
                 initialValues={{
                     classRepresentative: '',
-
                 }}
                 validations={{
                     classRepresentative: ["object", "Class Rep"],

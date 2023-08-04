@@ -9,7 +9,9 @@ import Add from './add';
 import Edit from './edit';
 import ChipButtonGroup from '../../../components/ChipButtonGroup';
 import RegisterStudents from './lists';
+import { useNavigate } from 'react-router-dom';
 const Courses = () => {
+    const navigate = useNavigate()
     const { changeModal } = useCommonStore()
     const { data, isLoading } = useCoursesQuery()
     return (
@@ -45,6 +47,15 @@ const Courses = () => {
                         key: "duration",
                         title: "Duration",
                     }, {
+                        key: "registeredstudents",
+                        title: "Total Registered Students",
+                        render: (_, { id, registeredstudents }) => (
+                            <button onClick={() => {
+                                navigate(`/courses/${id}/registered`)
+                            }} title='Click to View' className='text-blue-500 underline '>{registeredstudents?.length}</button>
+                        )
+                    },
+                    {
                         key: 'action',
                         title: 'Actions',
 

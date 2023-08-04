@@ -3,10 +3,19 @@ import YupPassword from "yup-password";
 // import parse from "date-fns/parse";
 const FILE_SIZE = 2 * 1024 * 1024;
 const SUPPORTED_FORMATS = ['image/jpg', 'image/jpeg', 'image/png'];
-
 YupPassword(Yup);
+
+
+
+
 const requiredStringField = (field) =>
   Yup.string().required(`No ${field} provided`);
+
+const requiredArrayField = (field) =>
+  Yup.array().of(Yup.object().shape({
+    label: Yup.string().required(`No ${field} provided`),
+    value: Yup.string().required(`No ${field} provided`),
+  }))
 const requiredFileField = (field) =>
   Yup.mixed().required(`No ${field} provided`)
     .test('fileSize', 'Max allowed size is 2MB', value => value && value.size <= FILE_SIZE)
@@ -39,6 +48,8 @@ const ChipValidationSchema = (type, field, title) => {
       return requiredStringField(field);
     case "image":
       return requiredFileField(field);
+    case "array":
+      return requiredArrayField(field);
     case "number":
       return requiredNumberField(field);
     case "email":

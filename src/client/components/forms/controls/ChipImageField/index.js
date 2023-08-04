@@ -13,7 +13,6 @@ const ChipImageField = (
         name, value, onChange, defaultValue }
 ) => {
     const [file, setFile] = useState();
-    console.log(defaultValue)
     const handleImageUpload = e => {
         const file = e.target.files[0];
         onChange(file)

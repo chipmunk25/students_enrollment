@@ -6,8 +6,8 @@ import Sidebar from "./Sidebar";
 import { useEffect, useState } from "react";
 import useThemeStore from "../../hooks/useTheme";
 import useAuthStore from "../../hooks/auth";
-
 import { useUserQuery } from "../../appQueryHooks/hooks/users/useQuery"
+import SideNav from "./Sidebar/sidenav";
 const Layout = () => {
   const navigate = useNavigate()
   const [isRDrawerOpen, setIsRDrawerOpen] = useState(false);
@@ -27,9 +27,9 @@ const Layout = () => {
     <div
       className={`w-full h-screen flex fixed bg-${theme.color}-${theme.lightbg} dark:bg-${theme.color}-${theme.darkbg}`}
     >
-      <Sidebar />
-      <Drawer isDrawerOpen={isRDrawerOpen} onClose={toggleDrawer}>
-        <div>This is it</div>
+      <Sidebar title="Student Enrollment" />
+      <Drawer isDrawerOpen={isRDrawerOpen} onClose={toggleDrawer} title="Student Enrollment">
+        <SideNav />
       </Drawer>
       <div className="w-full p-5 mt-2 overflow-hidden bg-white rounded-tl-lg shadow-2xl">
         <div className="flex">
@@ -44,5 +44,4 @@ const Layout = () => {
     </div>
   );
 };
-
 export default Layout;

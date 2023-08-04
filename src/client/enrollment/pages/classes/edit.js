@@ -48,7 +48,6 @@ const Edit = ({ detail }) => {
                             obj[key] = obj[key].trim();
                         }
                     }
-                    console.log(obj);
                     useUpdate.mutate(obj)
                 }}
             />

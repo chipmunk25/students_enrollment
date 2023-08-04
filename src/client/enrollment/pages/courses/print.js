@@ -2,7 +2,6 @@ import React from 'react';
 import PrintPage from './report';
 import PrintContent from './content';
 const PrintContainer = ({ componentRef, students, course }) => {
-    console.log(course)
     return (
         <div className="w-full">
             <div style={{ display: 'none' }}>

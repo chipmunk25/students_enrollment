@@ -7,7 +7,6 @@ export const useSaveClassMutation = () => {
     const { resetModal } = useCommonStore()
     return useMutation(CreateClass, {
         onSuccess: res => {
-            console.log(res);
             queryClient.invalidateQueries(['classes']);
             toast.success('Class Saved!');
             resetModal()
@@ -23,7 +22,6 @@ export const useUpdateClassMutation = () => {
     const { resetModal } = useCommonStore()
     return useMutation(updateClass, {
         onSuccess: res => {
-            console.log(res);
             queryClient.invalidateQueries(['classes']);
             toast.success('Class Updated!');
             resetModal()

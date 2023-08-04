@@ -5,7 +5,7 @@ import { IoCloseOutline } from "react-icons/io5";
 import classNames from "classnames";
 import useThemeStore from "../../hooks/useTheme";
 
-const Drawer = ({ isDrawerOpen, onClose, children, right }) => {
+const Drawer = ({ isDrawerOpen, onClose, children, right, title }) => {
   const theme = useThemeStore((state) => state);
   return (
     <Transition.Root show={isDrawerOpen} as={Fragment}>
@@ -62,7 +62,7 @@ const Drawer = ({ isDrawerOpen, onClose, children, right }) => {
                   >
                     <div className="flex items-center justify-between px-4 sm:px-6">
                       <Dialog.Title className="text-xl font-semibold leading-6 text-gray-900">
-                        Theme Config
+                        {title}
                       </Dialog.Title>
                       <button
                         onClick={onClose}

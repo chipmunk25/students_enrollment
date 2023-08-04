@@ -49,7 +49,6 @@ const RegisterStudents = ({ detail }) => {
                             obj[key] = obj[key].trim();
                         }
                     }
-                    console.log(obj);
                     useCourse.mutate(obj)
                 }}
             />

@@ -7,7 +7,6 @@ export const useSaveStudentMutation = () => {
     const { resetModal } = useCommonStore()
     return useMutation(RegisterStudent, {
         onSuccess: res => {
-            console.log(res);
             queryClient.invalidateQueries(['students']);
             toast.success('Student Saved!');
             resetModal()
@@ -23,7 +22,6 @@ export const useUpdateStudentMutation = () => {
     const { resetModal } = useCommonStore()
     return useMutation(UpdateStudent, {
         onSuccess: res => {
-            console.log(res);
             queryClient.invalidateQueries(['students']);
             toast.success('Student Updated!');
             resetModal()

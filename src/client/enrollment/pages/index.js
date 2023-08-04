@@ -11,7 +11,7 @@ const Registered = lazyWithRetry(() => import('./courses/registered'));
 const Classes = lazyWithRetry(() => import('./classes'));
 const Students = lazyWithRetry(() => import('./students'));
 const Layout = lazyWithRetry(() => import('../../components/Layout'));
-// const Dashboard = lazyWithRetry(() => import('./Dashboard'));
+const Dashboard = lazyWithRetry(() => import('./dashboard'));
 const MainApp = () => {
     const common = useCommonStore((state) => state);
     return (
@@ -25,8 +25,8 @@ const MainApp = () => {
             >
                 <Routes>
                     <Route exact path="/" element={<Layout />}>
-                        {/* <Route index element={<Dashboard />} /> */}
-                        {/* <Route path='dashboard' element={<Dashboard />} /> */}
+                        <Route index element={<Dashboard />} />
+                        <Route path='dashboard' element={<Dashboard />} />
                         <Route path='courses' element={<Courses />} />
                         <Route path='courses/:id/registered' element={<Registered />} />
                         <Route path='classes' element={<Classes />} />

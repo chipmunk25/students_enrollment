@@ -46,7 +46,6 @@ const Add = () => {
                             obj[key] = obj[key].trim();
                         }
                     }
-                    console.log(obj);
                     useSave.mutate(obj)
                 }}
             />

@@ -53,7 +53,6 @@ const Edit = ({ detail }) => {
                     obj.id = detail.id
                     obj.startDate = moment(values.startDate)
                     obj.duration = parseInt(values.duration)
-                    console.log(obj);
                     for (const key in obj) {
                         if (typeof obj[key] === 'string') {
                             obj[key] = obj[key].trim();

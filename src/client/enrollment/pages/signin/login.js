@@ -38,7 +38,6 @@ const LoginForm = () => {
                 password: ["password", "Password"],
             }}
                 onSubmit={(values) => {
-                    console.log(values);
                     useUser.mutate(values)
                 }}
             />

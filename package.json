@@ -48,6 +48,8 @@
     "formik": "^2.4.3",
     "fuzzy-search": "^3.2.1",
     "immer": "^10.0.2",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.5.31",
     "lodash": "^4.17.21",
     "postcss": "^8.4.27",
     "postcss-loader": "^7.3.3",

@@ -4,6 +4,7 @@ import FormWizard from '../../../components/forms/Wizard';
 import Spinner from "../../../shared/Spinner"
 import moment from "moment"
 import { useSaveStudentMutation } from '../../../appQueryHooks/hooks/student/useMutation';
+import { genders, residencies, statuses } from './constant';
 const Add = () => {
     const useSave = useSaveStudentMutation()
     return (
@@ -89,14 +90,10 @@ const Add = () => {
                             obj[key] = obj[key].trim();
                         }
                     }
-                    console.log(obj);
                     useSave.mutate(obj)
                 }}
             />
         </div>
     );
 };
-const genders = [{ label: "Male", value: "Male", }, { label: "Female", value: "Female", },]
-const residencies = [{ label: "on-campus", value: "on_campus", }, { label: "off-campus", value: "off_campus", },]
-const statuses = [{ label: "Regular", value: "regular", }, { label: "Foreign", value: "foreign", }, { label: "Fee Paying", value: "fee_paying", }, { label: "Distance", value: "distance", },]
 export default Add;

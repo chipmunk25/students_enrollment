@@ -14,7 +14,6 @@ const FormWizard = ({ initialValues, edittedValues, fields, validations, onSubmi
       )
     );
   }, [validations]);
-
   useEffect(() => {
     if (edittedValues) {
       Object.keys(initialValues).map((key) => {
@@ -43,12 +42,10 @@ const FormWizard = ({ initialValues, edittedValues, fields, validations, onSubmi
 };
 const checkSelectVal = (options, option) => {
   const val = typeof option === 'string' ? options?.find(o => o.value === option) : option
-  // console.log(val)
   return val
 }
 const findSelectOption = (options, option) => {
   const opt = options.find(o => o.type === 'select' && o.name === option)
-  // console.log(opt, option)
   return opt
 }
 export default FormWizard;

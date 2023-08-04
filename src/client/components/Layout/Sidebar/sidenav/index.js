@@ -2,6 +2,7 @@ import {
   IoAppsSharp,
   IoDiamondSharp,
   IoFileTrayStackedSharp,
+  IoLogOutSharp,
   IoPeopleSharp,
   IoPricetagSharp,
   IoSettingsSharp,
@@ -54,16 +55,8 @@ const sideNav = [
   {
     key: "students",
     item: "Students",
-    route: "",
+    route: "students",
     icon: IoPeopleSharp,
-    subItems: [
-      {
-        key: "register",
-        item: "Register",
-        route: "register",
-      },
-      { key: "lists", item: "Student Lists", route: "students" },
-    ],
   },
   {
     key: "dashboard",
@@ -74,34 +67,19 @@ const sideNav = [
   {
     key: "class",
     item: "Class",
-    route: "",
+    route: "classes",
     icon: IoDiamondSharp,
-    subItems: [
-      {
-        key: "create",
-        item: "New Class",
-        route: "new-class",
-        bgColor: "bg-blue-600",
-        color: "text-blue-100",
-      },
-      {
-        key: "lists",
-        item: "Class Lists",
-        route: "classes",
-        bgColor: "bg-green-600",
-        color: "text-green-100",
-      },
-    ],
   },
   {
     key: "course",
     item: "Courses",
-    route: "",
+    route: "courses",
     icon: IoFileTrayStackedSharp,
-    subItems: [
-      { key: "new-courses", item: "New Course", route: "new-course" },
-      { key: "lists", item: "Courses", route: "courses" },
-    ],
+  }, {
+    key: "logout",
+    item: "Logout",
+    route: "signout",
+    icon: IoLogOutSharp,
   },
 
 ];

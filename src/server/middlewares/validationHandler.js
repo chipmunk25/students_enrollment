@@ -10,7 +10,6 @@ exports.validationHandler = async (errors) => {
   }
   return errorFields;
 };
-
 exports.upsert = async (Model, values, condition) => {
   return Model
     .findOne({ where: condition })
@@ -19,7 +18,6 @@ exports.upsert = async (Model, values, condition) => {
       if (obj) return obj.update(values, { where: condition })
       // inserts
       const res = await Model.create(values);
-      console.log(res)
       return res
     })
 }

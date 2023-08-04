@@ -1,5 +1,6 @@
 import moment from 'moment';
 import React from 'react';
+import { genders, residencies, statuses, findLabel } from '../students/constant';
 const PrintContent = ({ students, course }) => {
     return (
         <div>
@@ -22,14 +23,13 @@ const PrintContent = ({ students, course }) => {
                                 <tr className="border-b even:bg-gray-50" key={idx}>
                                     <td className="px-2 border-r">{student?.studentId}</td>
                                     <td className="px-2 border-r">{student?.name}</td>
-                                    <td className="px-2 border-r">{student?.gender}</td>
-                                    <td className="px-2 border-r">{student?.residency}</td>
+                                    <td className="px-2 border-r"> {student?.gender ? findLabel(genders, student?.gender)?.label : ""}</td>
+                                    <td className="px-2 border-r"> {student?.residency ? findLabel(residencies, student?.residency)?.label : ""} </td>
                                     <td className="px-2 border-r">
                                         {student?.dateOfBirth ? moment(student?.dateOfBirth).format('LL') : ''}
                                     </td>
-                                    <td className="px-2 border-r">{student?.status}</td>
+                                    <td className="px-2 border-r">{student?.status ? findLabel(statuses, student?.status)?.label : ""} </td>
                                 </tr>
-
                             ))
                         }
                     </tbody>

@@ -6,7 +6,6 @@ export const useForgotMutation = () => {
     // const queryClient = useQueryClient();
     return useMutation(forgotPwd, {
         onSuccess: res => {
-            console.log(res);
             toast.success(res.data?.message);
         },
         onError: error => {
@@ -21,7 +20,6 @@ export const useResetMutation = () => {
         onSuccess: res => {
             toast.success('Password Changed Successfully!');
             if (res.data?.reset) {
-                console.log(res.data);
                 setTimeout(() => {
                     window.location.href = '/signin';
                 }, 2000);
@@ -37,16 +35,13 @@ export const useResetMutation = () => {
     });
 };
 export const useLoginUser = () => {
-    // const queryClient = useQueryClient();
     const { setToken, setUserId } = useAuthStore()
     return useMutation(LoginUser, {
         onSuccess: response => {
-            console.log(response)
             const token = response.data.token
             const userId = response.data.userId
             setToken(token)
             setUserId(userId)
-            // queryClient.invalidateQueries(['authUser']);
             window.location.href = `/`;
         },
         onError: error => {
@@ -59,7 +54,6 @@ export const useCreateUserMutation = () => {
     const queryClient = useQueryClient();
     return useMutation(CreateUser, {
         onSuccess: res => {
-            console.log(res);
             // queryClient.invalidateQueries(['candidates']);
             toast.success('Saved!');
             setTimeout(() => {
@@ -78,7 +72,6 @@ export const useCreateUserMutation = () => {
 export const useUpdateUserMutation = () => {
     return useMutation(updateUser, {
         onSuccess: res => {
-            console.log(res);
             toast.success('Updated!');
             setTimeout(() => {
                 window.location.href = '/users';
@@ -93,7 +86,6 @@ export const useUpdateUserMutation = () => {
 export const useUpdateUserAccessMutation = () => {
     return useMutation(updateUserAccess, {
         onSuccess: res => {
-            console.log(res);
             toast.success('Updated!');
             setTimeout(() => {
                 window.location.href = '/users';

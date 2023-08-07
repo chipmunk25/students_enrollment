@@ -61,7 +61,7 @@ const RenderArrayMenu = (props) => {
           return (
             <li
               key={index}
-              className={classNames("hover:text-blac dark:hover:text-white", {
+              className={classNames("hover:text-neutral-100 dark:hover:text-white", {
                 "bg-transparent text-blac dark:text-white": match === menu.key,
                 "text-blac dark:text-white": isOpen,
               })}
@@ -99,7 +99,7 @@ const RenderArrayMenu = (props) => {
             <li
               key={index}
               className={classNames(
-                "py-2 hover:text-blac dark:hover:text-white",
+                "py-2 hover:text-neutral-100 dark:hover:text-white",
                 {
                   "bg-active dark:bg-darkactive w-full": isSelected,
                   "relative  group": props.sub,

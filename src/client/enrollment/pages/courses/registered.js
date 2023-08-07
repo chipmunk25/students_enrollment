@@ -20,7 +20,7 @@ const Registered = () => {
     });
     return (
         <div className='w-full'>
-            <div className='flex justify-between w-full'>
+            <div className='flex flex-col justify-center w-full gap-4 px-5  md:justify-between md:flex-row'>
                 <span className='text-2xl font-bold'>Registered Students Lists</span>
                 <div className='flex'>
                     <ChipButtonGroup btns={

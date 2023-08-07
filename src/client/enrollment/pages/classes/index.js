@@ -9,7 +9,8 @@ import Edit from './edit';
 import ChipButtonGroup from '../../../components/ChipButtonGroup';
 import ClassRep from './rep';
 import Loader from "../../../shared/Loader"
-import MobileTable from '../../../shared/MobTable';
+import MobileTable from '../../../shared/MobileTable';
+import Datatable from './table';
 const Classes = () => {
     const { changeModal } = useCommonStore()
     const { data, isLoading } = useClassesQuery()
@@ -84,7 +85,7 @@ const Classes = () => {
                     rows={formatResponse(data, 'classes', [])}
                 />
             </div>
-            <div className="w-full md:hidden">
+            <div className="w-full ">
                 <MobileTable
                     title="Classes"
                     searchTerms={["className"]}
@@ -115,43 +116,46 @@ const Classes = () => {
                             render: (_, { student }) => (
                                 <span>{student?.name}</span>
                             )
-                        }, {
-                            key: 'action',
-                            title: 'Actions',
-                            render: (_, row) => (
-                                <div className="flex items-center justify-end gap-2 max-w-48">
-                                    <ChipButtonGroup btns={
-                                        [
-                                            {
-                                                title: "Edit", onClick: () => {
-                                                    const modal = {
-                                                        show: true,
-                                                        title: "Edit Class",
-                                                        size: "medium",
-                                                        content: <Edit detail={row} />,
-                                                    };
-                                                    changeModal(modal);
-                                                }
-                                            }, {
-                                                title: "Class Rep", onClick: () => {
-                                                    const modal = {
-                                                        show: true,
-                                                        title: "Class Representative",
-                                                        size: "medium",
-                                                        content: <ClassRep detail={row} />,
-                                                    };
-                                                    changeModal(modal);
-                                                }
-                                            },
-                                        ]
-                                    } />
-                                </div>
-                            )
-                        }
+                        },
+                        // {
+                        //     key: 'action',
+                        //     title: 'Actions',
+                        //     render: (_, row) => (
+                        //         <div className="flex items-center justify-end gap-2 max-w-48">
+                        //             <ChipButtonGroup btns={
+                        //                 [
+                        //                     {
+                        //                         title: "Edit", onClick: () => {
+                        //                             const modal = {
+                        //                                 show: true,
+                        //                                 title: "Edit Class",
+                        //                                 size: "medium",
+                        //                                 content: <Edit detail={row} />,
+                        //                             };
+                        //                             changeModal(modal);
+                        //                         }
+                        //                     }, {
+                        //                         title: "Class Rep", onClick: () => {
+                        //                             const modal = {
+                        //                                 show: true,
+                        //                                 title: "Class Representative",
+                        //                                 size: "medium",
+                        //                                 content: <ClassRep detail={row} />,
+                        //                             };
+                        //                             changeModal(modal);
+                        //                         }
+                        //                     },
+                        //                 ]
+                        //             } />
+                        //         </div>
+                        //     )
+                        // }
                     ]}
                     rows={formatResponse(data, 'classes', [])}
                 />
             </div>
+            {/* <Datatable /> */}
+
         </div>
     );
 };

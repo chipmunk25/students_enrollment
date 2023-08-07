@@ -1,6 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 const safeListFile = "safelist.txt";
-
 module.exports = {
   mode: "jit",
   content: ["./src/**/*.{js,jsx,ts,tsx}", "./safelist.txt"],
@@ -8,6 +7,7 @@ module.exports = {
     extend: {
       colors: {
         blac: "#343434",
+        sideb: "rgb(50, 54, 57)",
         error: "rgb(196, 49, 75)",
         active: "#e5e5e3",
         darkactive: "#636362",
@@ -53,6 +53,7 @@ module.exports = {
         "dark:hover:text-{colors}",
         "h-{height}",
         "w-{width}",
+
       ],
     }),
     require("@tailwindcss/forms"),

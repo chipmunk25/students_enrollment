@@ -25,8 +25,8 @@ const Layout = () => {
   }, [data, isLoading])
   return (
     <div
-      style={{ backgroundImage: `url(${isBg})`, }}
-      className={`w-full h-screen bg-black flex fixed  dark:bg-${theme.color}-${theme.darkbg}`}
+      // style={{ backgroundImage: `url(${isBg})`, }}
+      className={`w-full h-screen bg-sideb flex fixed  dark:bg-${theme.color}-${theme.darkbg}`}
     >
       <Sidebar title="Student Enrollment" />
       <Drawer isDrawerOpen={isRDrawerOpen} onClose={toggleDrawer} title="Student Enrollment">

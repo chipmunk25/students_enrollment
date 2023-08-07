@@ -10,11 +10,7 @@ axios.interceptors.request.use(req => {
     if (req.url.startsWith('/api')) return req;
     req.url = createUrl('/api/v1/web')(req.url);
     req.withCredentials = true;
-    // if (token) {
-    //     req.headers[
-    //         "Authorization"
-    //     ] = `Bearer ${token}`
-    // }
+
     return req;
 });
 axios.interceptors.response.use(
@@ -23,11 +19,11 @@ axios.interceptors.response.use(
         console.error(err);
         if (err && err.response && err.response.status === 401) {
             // If response status is 401, redirect to login page
-            // window.location.href = '/signout';
+            window.location.href = '/signout';
         }
         if (err && err.response && err.response.status === 403) {
             // If response status is 401, redirect to login page
-            // window.location.href = '/signout';
+            window.location.href = '/signout';
         }
 
         throw err;
